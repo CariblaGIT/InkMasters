@@ -1,4 +1,4 @@
-INSERT INTO rols (name) VALUES ('admin'), ('super_admin'), ('user');
+INSERT INTO roles (name) VALUES ('admin'), ('super_admin'), ('user'), ('tattooer');
 
 INSERT INTO services (service_name, description) VALUES 
 	('Custom tattoos', 'The customers will have the freedom to select unique motifs and designs, completely customize your tattoo experience according to your preferences and tastes.'),

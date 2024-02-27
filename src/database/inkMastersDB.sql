@@ -23,11 +23,20 @@ CREATE TABLE users(
     CONSTRAINT UC_Person UNIQUE (first_name, last_name)
 );
 
+CREATE TABLE establishments(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    address VARCHAR(255) NOT NULL UNIQUE,
+    city VARCHAR(255) NOT NULL,
+    postal_code INT
+);
+
 CREATE TABLE appointments(
 	id INT AUTO_INCREMENT PRIMARY KEY,
     appointment_date DATE NOT NULL,
     user_id INT,
     service_id INT,
+    establishment_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (service_id) REFERENCES services(id)
+    FOREIGN KEY (service_id) REFERENCES services(id),
+    FOREIGN KEY (establishment_id) REFERENCES establishments(id)
 );

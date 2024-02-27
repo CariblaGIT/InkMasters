@@ -11,3 +11,5 @@ INSERT INTO users (first_name, last_name, email, password_hash, role_id) VALUES
 	('Carlos', 'Ibañez Lamas', 'caribla4@gmail.com', 'SuperAdminAllPowerfull2024', 2),
     ('Daniel', 'Tarazona', 'danitarazona@geekshubs.com', '1234567890', 1),
     ('David', 'Ochando Blasco', 'davidochando@geekshubs.com', '0987654321', 3);
+    
+INSERT INTO establishments (address, city, postal_code) VALUES ('C/ Tinta Tintero 3', 'Valencia', 46016);

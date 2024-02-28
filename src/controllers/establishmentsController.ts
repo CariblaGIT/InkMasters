@@ -54,7 +54,37 @@ export const PostEstablishment = async (req : Request, res : Response) => {
 }
 
 export const UpdateEstablishment = async (req : Request, res : Response) => {
+    try {
+        const establishmentId = req.params.id;
 
+        const service = await Establishment.findOneBy({
+            id: parseInt(establishmentId)
+        })
+
+        if(!service){
+            return res.status(404).json({
+                success: false,
+                message: "Establishment not found to update on DB"
+            })
+        }
+
+        const establishmentUpdate = await Establishment.update(
+            {id: parseInt(establishmentId)}, req.body
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Establishment updated into DB successfully",
+            data: establishmentUpdate
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Update establishment into DB failure",
+            error: error
+        });
+    }
 }
 
 export const DeleteEstablishment = async (req : Request, res : Response) => {

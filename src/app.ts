@@ -35,7 +35,7 @@ app.post('/api/auth/login', LoginUser);
 app.get('/api/users', GetUsers);
 app.get('/api/users/profile', ProfileUser);
 app.put('/api/users/profile', ModifyUser);
-app.get('/api/users?email', UserByMail);
+app.get('/api/users/:email', UserByMail);
 app.delete('/api/users:id', DeleteUser);
 app.put('/api/users:id/role', ChangeUserRole);
 

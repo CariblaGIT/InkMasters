@@ -97,8 +97,37 @@ export const UserByMail = async (req : Request, res : Response) => {
     }
 }
 
-export const DeleteUser = (req : Request, res : Response) => {
-    
+export const DeleteUser = async (req : Request, res : Response) => {
+    try {
+        const userId = req.params.id;
+
+        const user = await User.findOneBy({
+            id: parseInt(userId)
+        })
+
+        if(!user){
+            return res.status(404).json({
+                success: false,
+                message: "User not found to delete on DB"
+            })
+        }
+
+        await User.delete(
+            {id: parseInt(userId)}
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Users deleted from DB successfully"
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Delete users from DB failure",
+            error: error
+        });
+    }
 }
 
 export const ChangeUserRole = (req : Request, res : Response) => {

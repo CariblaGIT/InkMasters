@@ -3,6 +3,7 @@ import { GetUsers, ProfileUser, ModifyUser, UserByMail, DeleteUser, ChangeUserRo
 import { GetServices, PostService, UpdateService, DeleteService } from "./controllers/servicesController";
 import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
 import { RegisterUser, LoginUser } from "./controllers/authController";
+import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentController";
 
 export const app : Application = express();
 app.use(express.json());
@@ -62,3 +63,14 @@ app.get('/api/services', GetServices);
 app.post('/api/services', PostService);
 app.put('/api/services/:id', UpdateService);
 app.delete('/api/services/:id', DeleteService);
+
+/* 
+========================================
+    METHODS : SERVICES
+========================================
+*/
+
+app.get('/api/establishments', GetEstablishments);
+app.post('/api/establishments', PostEstablishment);
+app.put('/api/establishments/:id', UpdateEstablishment);
+app.delete('/api/establishments/:id', DeleteEstablishment);

@@ -57,14 +57,14 @@ export const UpdateEstablishment = async (req : Request, res : Response) => {
     try {
         const establishmentId = req.params.id;
 
-        const service = await Establishment.findOneBy({
+        const establishment = await Establishment.findOneBy({
             id: parseInt(establishmentId)
         })
 
-        if(!service){
+        if(!establishment){
             return res.status(404).json({
                 success: false,
-                message: "Establishment not found to update on DB"
+                message: "Establishment not found to delete on DB"
             })
         }
 
@@ -88,5 +88,34 @@ export const UpdateEstablishment = async (req : Request, res : Response) => {
 }
 
 export const DeleteEstablishment = async (req : Request, res : Response) => {
+    try {
+        const establishmentId = req.params.id;
 
+        const establishment = await Establishment.findOneBy({
+            id: parseInt(establishmentId)
+        })
+
+        if(!establishment){
+            return res.status(404).json({
+                success: false,
+                message: "Establishment not found to delete on DB"
+            })
+        }
+
+        await Establishment.delete(
+            {id: parseInt(establishmentId)}
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Establishment deleted from DB successfully"
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Delete establishments from DB failure",
+            error: error
+        });
+    }
 }

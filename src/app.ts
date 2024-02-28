@@ -3,7 +3,7 @@ import { GetUsers, ProfileUser, ModifyUser, UserByMail, DeleteUser, ChangeUserRo
 import { GetServices, PostService, UpdateService, DeleteService } from "./controllers/servicesController";
 import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
 import { RegisterUser, LoginUser } from "./controllers/authController";
-import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentController";
+import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
 
 export const app : Application = express();
 app.use(express.json());

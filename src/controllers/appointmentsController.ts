@@ -1,8 +1,36 @@
 import { Request, Response } from "express";
 import { Appointment } from "../models/Appointment";
 
-export const PostAppointment = (req : Request, res : Response) => {
+export const PostAppointment = async (req : Request, res : Response) => {
+    try {
 
+        const reqDate : Date = req.body.appointment_date;
+        const reqServiceId : number = parseInt(req.body.service_id);
+        const reqEstablishmentId : number = parseInt(req.body.establishment_id);
+        const reqTattooerId : number = parseInt(req.body.tattooer_id);
+        const reqUserId : number = parseInt(req.body.user_id);
+
+        const newAppointment = await Appointment.create({
+            appointmentDate: reqDate,
+            service: {id: reqServiceId},
+            establishment: {id: reqEstablishmentId},
+            tatooer: {id: reqTattooerId},
+            user: {id: reqUserId}
+        }).save()
+
+        return res.status(201).json({
+            success: true,
+            message: "Appointment registered into DB successfully",
+            data: newAppointment
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Register appointment failure",
+            error: error
+        });
+    }
 }
 
 export const UpdateAppointment = (req : Request, res : Response) => {

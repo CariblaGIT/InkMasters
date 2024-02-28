@@ -48,7 +48,7 @@ app.put('/api/users:id/role', ChangeUserRole);
 */
 
 app.post('/api/appointments', PostAppointment);
-app.put('/api/appointments', UpdateAppointment);
+app.put('/api/appointments/:id', UpdateAppointment);
 app.get('/api/appointments/:id', GetAppointmentById);
 app.get('/api/appointments', GetAppointments);
 

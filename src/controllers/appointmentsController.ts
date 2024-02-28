@@ -33,8 +33,38 @@ export const PostAppointment = async (req : Request, res : Response) => {
     }
 }
 
-export const UpdateAppointment = (req : Request, res : Response) => {
+export const UpdateAppointment = async (req : Request, res : Response) => {
+    try {
+        const appointmentId = req.params.id;
 
+        const appointment = await Appointment.findOneBy({
+            id: parseInt(appointmentId)
+        })
+
+        if(!appointment){
+            return res.status(404).json({
+                success: false,
+                message: "Appointment not found to update on DB"
+            })
+        }
+
+        const appointmentUpdate = await Appointment.update(
+            {id: parseInt(appointmentId)}, req.body
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Appointment updated into DB successfully",
+            data: appointmentUpdate
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Update appointment into DB failure",
+            error: error
+        });
+    }
 }
 
 export const GetAppointmentById = async (req : Request, res : Response) => {

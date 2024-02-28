@@ -31,7 +31,7 @@ export const RegisterUser = async (req : Request, res : Response) => {
 
         const cryptedPass = bcrypt.hashSync(reqPass, 8);
 
-        const newUser = await User.create({
+        await User.create({
             firstName: reqFirstName,
             lastName: reqLastName,
             email: reqMail,
@@ -40,8 +40,7 @@ export const RegisterUser = async (req : Request, res : Response) => {
 
         return res.status(201).json({
             success: true,
-            message: "User registered into DB successfully",
-            data: newUser
+            message: "User registered into DB successfully"
         })
         
     } catch (error) {

@@ -9,6 +9,7 @@ export const RegisterUser = async (req : Request, res : Response) => {
         const reqFirstName : string = req.body.first_name;
         const reqLastName : string = req.body.last_name;
         const reqPass : string = req.body.password_hash;
+        const reqRole : number = req.body.role_id;
 
         const regexpPass : RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/;
 
@@ -35,7 +36,8 @@ export const RegisterUser = async (req : Request, res : Response) => {
             firstName: reqFirstName,
             lastName: reqLastName,
             email: reqMail,
-            passwordHash: cryptedPass
+            passwordHash: cryptedPass,
+            role: {id: reqRole}
         }).save()
 
         return res.status(201).json({

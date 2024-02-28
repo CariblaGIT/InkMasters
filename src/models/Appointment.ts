@@ -3,7 +3,7 @@ import { Service } from "./Service";
 import { Establishment } from "./Establishment";
 import { User } from "./User";
 
-@Entity()
+@Entity("appointments")
 export class Appointment extends BaseEntity{
 
     @PrimaryGeneratedColumn()
@@ -16,16 +16,16 @@ export class Appointment extends BaseEntity{
     @JoinColumn ({ name: "service_id" })
     service!: Service;
 
-    @ManyToOne(() => Establishment, (estableshiment) => estableshiment.appointments)
-    @JoinColumn ({ name: "estableshiment_id" })
-    estableshiment!: Establishment;
+    @ManyToOne(() => Establishment, (establishment) => establishment.appointments)
+    @JoinColumn ({ name: "establishment_id" })
+    establishment!: Establishment;
 
     @ManyToOne(() => User, (user) => user.userAppointments)
     @JoinColumn ({ name: "user_id" })
     user!: User;
 
     @ManyToOne(() => User, (user) => user.tattooerAppointments)
-    @JoinColumn ({ name: "tattoer_id" })
+    @JoinColumn ({ name: "tattooer_id" })
     tatooer!: User;
 
 }

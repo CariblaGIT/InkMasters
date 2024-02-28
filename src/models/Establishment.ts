@@ -16,7 +16,7 @@ export class Establishment extends BaseEntity{
     @Column({name: 'postal_code'})
     postalCode!: number
 
-    @OneToMany(() => Appointment, (appointment) => appointment.estableshiment)
+    @OneToMany(() => Appointment, (appointment) => appointment.establishment)
     appointments!: Appointment[];
 
 }

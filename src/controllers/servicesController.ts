@@ -26,8 +26,29 @@ export const GetServices = async (req : Request, res : Response) => {
     }
 }
 
-export const PostService = (req : Request, res : Response) => {
+export const PostService = async (req : Request, res : Response) => {
+    try {
 
+        const reqName : string = req.body.service_name;
+        const reqDescription : string = req.body.description;
+
+        await Service.create({
+            serviceName: reqName,
+            description: reqDescription
+        }).save()
+
+        return res.status(201).json({
+            success: true,
+            message: "Service registered into DB successfully"
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Register service failure",
+            error: error
+        });
+    }
 }
 
 export const UpdateService = (req : Request, res : Response) => {

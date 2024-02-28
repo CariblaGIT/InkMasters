@@ -33,8 +33,38 @@ export const ProfileUser = (req : Request, res : Response) => {
     
 }
 
-export const ModifyUser = (req : Request, res : Response) => {
-    
+export const ModifyUser = async (req : Request, res : Response) => {
+    try {
+        const userId = req.params.id;
+
+        const user = await User.findOneBy({
+            id: parseInt(userId)
+        })
+
+        if(!user){
+            return res.status(404).json({
+                success: false,
+                message: "User not found to update on DB"
+            })
+        }
+
+        const userUpdate = await User.update(
+            {id: parseInt(userId)}, req.body
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Users updated into DB successfully",
+            data: userUpdate
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Update users into DB failure",
+            error: error
+        });
+    }
 }
 
 export const UserByMail = async (req : Request, res : Response) => {

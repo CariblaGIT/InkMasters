@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { User } from "../models/User";
-import { IsNull } from "typeorm";
 
 export const GetUsers = async (req : Request, res : Response) => {
     try {

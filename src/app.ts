@@ -61,4 +61,4 @@ app.get('/api/appointments', GetAppointments);
 app.get('/api/services', GetServices);
 app.post('/api/services', PostService);
 app.put('/api/services/:id', UpdateService);
-app.delete('/api/services:id', DeleteService);
+app.delete('/api/services/:id', DeleteService);

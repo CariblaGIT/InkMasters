@@ -16,7 +16,8 @@ export class User1709046422962 implements MigrationInterface {
                     },
                     {
                         name: "role_id",
-                        type: "int"
+                        type: "int",
+                        default: 1
                     },
                     {
                         name: "first_name",

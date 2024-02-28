@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS inkMastersLocal;
-USE inkMastersLocal;
+CREATE DATABASE IF NOT EXISTS inkMasters;
+USE inkMasters;
 
 CREATE TABLE roles(
 	id INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,12 +1,5 @@
 import { Request, Response } from "express";
-
-export const RegisterUser = (req : Request, res : Response) => {
-
-}
-
-export const LoginUser = (req : Request, res : Response) => {
-    
-}
+import { User } from "../models/User";
 
 export const GetUsers = (req : Request, res : Response) => {
     

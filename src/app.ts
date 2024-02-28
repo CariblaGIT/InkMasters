@@ -1,7 +1,8 @@
 import express, { Application } from "express";
-import { RegisterUser, LoginUser, GetUsers, ProfileUser, ModifyUser, UserByMail, DeleteUser, ChangeUserRole} from "./controllers/usersController";
+import { GetUsers, ProfileUser, ModifyUser, UserByMail, DeleteUser, ChangeUserRole} from "./controllers/usersController";
 import { GetServices, PostService, UpdateService, DeleteService } from "./controllers/servicesController";
 import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
+import { RegisterUser, LoginUser } from "./controllers/authController";
 
 export const app : Application = express();
 app.use(express.json());
@@ -21,8 +22,8 @@ app.get('/healthy', (req, res) => {
 ========================================
 */
 
-app.post('/auth/register', RegisterUser);
-app.post('/auth/login', LoginUser);
+app.post('/api/auth/register', RegisterUser);
+app.post('/api/auth/login', LoginUser);
 
 
 /* 
@@ -31,12 +32,12 @@ app.post('/auth/login', LoginUser);
 ========================================
 */
 
-app.get('/users', GetUsers);
-app.get('/users/profile', ProfileUser);
-app.put('/users/profile', ModifyUser);
-app.get('/users?email', UserByMail);
-app.delete('/users:id', DeleteUser);
-app.put('/users:id/role', ChangeUserRole);
+app.get('/api/users', GetUsers);
+app.get('/api/users/profile', ProfileUser);
+app.put('/api/users/profile', ModifyUser);
+app.get('/api/users?email', UserByMail);
+app.delete('/api/users:id', DeleteUser);
+app.put('/api/users:id/role', ChangeUserRole);
 
 
 /* 
@@ -45,10 +46,10 @@ app.put('/users:id/role', ChangeUserRole);
 ========================================
 */
 
-app.post('/appointments', PostAppointment);
-app.put('/appointments', UpdateAppointment);
-app.get('/appointments:id', GetAppointmentById);
-app.get('/appointments', GetAppointments);
+app.post('/api/appointments', PostAppointment);
+app.put('/api/appointments', UpdateAppointment);
+app.get('/api/appointments:id', GetAppointmentById);
+app.get('/api/appointments', GetAppointments);
 
 
 /* 
@@ -57,7 +58,7 @@ app.get('/appointments', GetAppointments);
 ========================================
 */
 
-app.get('/services', GetServices);
-app.post('/services', PostService);
-app.put('/services:id', UpdateService);
-app.delete('/services:id', DeleteService);
+app.get('/api/services', GetServices);
+app.post('/api/services', PostService);
+app.put('/api/services:id', UpdateService);
+app.delete('/api/services:id', DeleteService);

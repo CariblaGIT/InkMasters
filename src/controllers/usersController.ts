@@ -4,6 +4,12 @@ import { Role } from "../models/Role";
 
 export const GetUsers = async (req : Request, res : Response) => {
     try {
+        const body = req.body
+
+        if(body.email){
+            UserByMail(body.email, res);
+        }
+
         const allUsers = await User.find({
             select : {
                 firstName : true,
@@ -101,12 +107,10 @@ export const ModifyUser = async (req : Request, res : Response) => {
     }
 }
 
-export const UserByMail = async (req : Request, res : Response) => {
+const UserByMail = async (email : string, res : Response) => {
     try {
-        const userMail = req.params.email
-
         const user = await User.findOneBy({
-            email: userMail
+            email: email
         })
 
         if(!user){

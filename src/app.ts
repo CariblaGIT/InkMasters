@@ -1,5 +1,5 @@
 import express, { Application } from "express";
-import { GetUsers, ProfileUser, ModifyUser, UserByMail, DeleteUser, ChangeUserRole} from "./controllers/usersController";
+import { GetUsers, ProfileUser, ModifyUser, DeleteUser, ChangeUserRole} from "./controllers/usersController";
 import { GetServices, PostService, UpdateService, DeleteService } from "./controllers/servicesController";
 import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
 import { RegisterUser, LoginUser } from "./controllers/authController";
@@ -38,7 +38,6 @@ app.post('/api/auth/login', LoginUser);
 app.get('/api/users', auth, isSuperAdmin, GetUsers);
 app.get('/api/users/profile', ProfileUser);
 app.put('/api/users/profile/:id', ModifyUser);
-app.get('/api/users/:email', UserByMail);
 app.delete('/api/users/:id', auth, isSuperAdmin, DeleteUser);
 app.put('/api/users/:id/role', auth, isSuperAdmin, ChangeUserRole);
 

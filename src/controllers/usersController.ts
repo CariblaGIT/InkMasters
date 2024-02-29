@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { User } from "../models/User";
+import { Role } from "../models/Role";
 
 export const GetUsers = async (req : Request, res : Response) => {
     try {
@@ -129,6 +130,48 @@ export const DeleteUser = async (req : Request, res : Response) => {
     }
 }
 
-export const ChangeUserRole = (req : Request, res : Response) => {
-    
+export const ChangeUserRole = async (req : Request, res : Response) => {
+    try {
+        const userId = req.params.id;
+        const newRole = (req.query.role!).toString();
+
+        const user = await User.findOneBy({
+            id: parseInt(userId)
+        })
+
+        if(!user){
+            return res.status(404).json({
+                success: false,
+                message: "User not found to update on DB"
+            })
+        }
+
+        const role = await Role.findOneBy({
+            name: newRole
+        })
+
+        if(!role){
+            return res.status(404).json({
+                success: false,
+                message: "Role to not found to update on DB"
+            })
+        }
+
+        const userUpdate = await User.update(
+            {id: parseInt(userId)}, {role: {id: role.id}}
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "User role updated into DB successfully",
+            data: userUpdate
+        })
+
+    } catch (error : any) {
+        return res.status(500).json({
+            success: false,
+            message: "Update role from users into DB failure",
+            error: error.message
+        });
+    }
 }

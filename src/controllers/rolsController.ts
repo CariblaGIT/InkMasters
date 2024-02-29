@@ -20,8 +20,26 @@ export const GetRoles = async (req : Request, res : Response) => {
     }
 }
 
-export const PostRol = (req : Request, res : Response) => {
+export const PostRol = async (req : Request, res : Response) => {
+    try{
+        const reqName : string = req.body.role_name;
 
+        await Role.create({
+            name: reqName
+        }).save()
+
+        return res.status(201).json({
+            success: true,
+            message: "Role registered into DB successfully"
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Register role failure",
+            error: error
+        });
+    }
 }
 
 export const UpdateRol = (req : Request, res : Response) => {

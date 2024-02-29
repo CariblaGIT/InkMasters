@@ -6,6 +6,7 @@ import { RegisterUser, LoginUser } from "./controllers/authController";
 import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
 import { auth } from "./middlewares/auth";
 import { isSuperAdmin } from "./middlewares/isSuperAdmin";
+import { DeleteRol, GetRoles, PostRol, UpdateRol } from "./controllers/rolsController";
 
 export const app : Application = express();
 app.use(express.json());
@@ -27,6 +28,18 @@ app.get('/healthy', (req, res) => {
 
 app.post('/api/auth/register', RegisterUser);
 app.post('/api/auth/login', LoginUser);
+
+
+/* 
+========================================
+    METHODS : ROLES
+========================================
+*/
+
+app.get('/api/roles', auth, isSuperAdmin, GetRoles);
+app.post('/api/roles', auth, isSuperAdmin, PostRol);
+app.put('/api/roles/:id', auth, isSuperAdmin, UpdateRol);
+app.delete('/api/roles/:id', auth, isSuperAdmin, DeleteRol);
 
 
 /* 
@@ -64,6 +77,7 @@ app.get('/api/services', GetServices);
 app.post('/api/services', auth, isSuperAdmin, PostService);
 app.put('/api/services/:id', auth, isSuperAdmin, UpdateService);
 app.delete('/api/services/:id', auth, isSuperAdmin, DeleteService);
+
 
 /* 
 ========================================

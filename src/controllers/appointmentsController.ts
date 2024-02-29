@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Appointment } from "../models/Appointment";
+import { validateDate } from "../helpers/validateDate";
 
 export const PostAppointment = async (req : Request, res : Response) => {
     try {
@@ -9,6 +10,20 @@ export const PostAppointment = async (req : Request, res : Response) => {
         const reqEstablishmentId : number = parseInt(req.body.establishment_id);
         const reqTattooerId : number = parseInt(req.body.tattooer_id);
         const reqUserId : number = parseInt(req.body.user_id);
+
+        if(isNaN(reqServiceId) || isNaN(reqEstablishmentId) || isNaN(reqTattooerId) || isNaN(reqUserId)){
+            return res.status(400).json({
+                success: false,
+                message: "1 or more IDs are bad written (not numbers)"
+            });
+        }
+
+        if(!validateDate(reqDate)){
+            return res.status(400).json({
+                success: false,
+                message: "Appointment date format invalid"
+            });
+        }
 
         const newAppointment = await Appointment.create({
             appointmentDate: reqDate,

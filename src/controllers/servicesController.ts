@@ -32,6 +32,13 @@ export const PostService = async (req : Request, res : Response) => {
         const reqName : string = req.body.service_name;
         const reqDescription : string = req.body.description;
 
+        if(!reqName || !reqDescription){
+            return res.status(400).json({
+                success: false,
+                message: "You have to specify a name and a description for the service input to be able to create it"
+            });
+        }
+
         await Service.create({
             serviceName: reqName,
             description: reqDescription
@@ -64,6 +71,13 @@ export const UpdateService = async (req : Request, res : Response) => {
                 success: false,
                 message: "User not found to update on DB"
             })
+        }
+
+        if(!req.body){
+            return res.status(400).json({
+                success: false,
+                message: "You have to give data to be able to change the service"
+            });
         }
 
         const serviceUpdate = await Service.update(

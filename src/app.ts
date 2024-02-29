@@ -37,7 +37,7 @@ app.post('/api/auth/login', LoginUser);
 
 app.get('/api/users', auth, isSuperAdmin, GetUsers);
 app.get('/api/users/profile', auth, ProfileUser);
-app.put('/api/users/profile/', auth, ModifyUser);
+app.put('/api/users/profile', auth, ModifyUser);
 app.delete('/api/users/:id', auth, isSuperAdmin, DeleteUser);
 app.put('/api/users/:id/role', auth, isSuperAdmin, ChangeUserRole);
 
@@ -72,6 +72,6 @@ app.delete('/api/services/:id', auth, isSuperAdmin, DeleteService);
 */
 
 app.get('/api/establishments', GetEstablishments);
-app.post('/api/establishments', PostEstablishment);
-app.put('/api/establishments/:id', UpdateEstablishment);
-app.delete('/api/establishments/:id', DeleteEstablishment);
+app.post('/api/establishments', auth, isSuperAdmin, PostEstablishment);
+app.put('/api/establishments/:id', auth, isSuperAdmin, UpdateEstablishment);
+app.delete('/api/establishments/:id', auth, isSuperAdmin, DeleteEstablishment);

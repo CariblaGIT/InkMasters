@@ -3,6 +3,8 @@ import { User } from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import 'dotenv/config';
+import { validateEmail } from "../helpers/validateEmail";
+import { validatePassword } from "../helpers/validatePassword";
 
 export const RegisterUser = async (req : Request, res : Response) => {
     try {
@@ -13,17 +15,14 @@ export const RegisterUser = async (req : Request, res : Response) => {
         const reqPass : string = req.body.password_hash;
         const reqRole : number = req.body.role_id;
 
-        const regexpPass : RegExp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]+$/;
-
-        if(reqPass.length < 10 || !regexpPass.test(reqPass) || reqPass.includes(' ')){
+        if(!validatePassword(reqPass)){
             return res.status(400).json({
                 success: false,
                 message: "Password not inside the standards (shorter than 10 and without special characters, mayus, minus and/or numbers and with spaces)"
             });
         }
 
-        const validEmail : RegExp = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-        if (!validEmail.test(reqMail) ){
+        if (!validateEmail(reqMail)){
           return res.status(400).json(
             {
               success: false,
@@ -58,7 +57,6 @@ export const RegisterUser = async (req : Request, res : Response) => {
 
 export const LoginUser = async (req : Request, res : Response) => {
     try {
-
         const email = req.body.email;
         const password = req.body.password;
 
@@ -69,6 +67,15 @@ export const LoginUser = async (req : Request, res : Response) => {
                   message: "Needed to have an email and a password"
                 }
         )}
+
+        if (!validateEmail(email)){
+            return res.status(400).json(
+              {
+                success: false,
+                message: "Email inserted not valid - Bad structure"
+              }
+            )
+        }
 
         const user = await User.findOne({
             select : {

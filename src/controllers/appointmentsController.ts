@@ -114,11 +114,30 @@ export const GetAppointmentById = async (req : Request, res : Response) => {
 
 export const GetAppointments = async (req : Request, res : Response) => {
     try {
-        const userId = parseInt(req.query.userId as string, 10)
+        const userId = req.tokenData.userId;
 
         const appointments = await Appointment.find({
             where: {
                 user: {id: userId}
+            },
+            relations:{
+                establishment: true,
+                tatooer: true,
+                service: true
+            },
+            select:{
+                establishment:{
+                    address: true,
+                    city: false,
+                    postalCode: false
+                },
+                service:{
+                    serviceName: true
+                },
+                tatooer:{
+                    firstName: true
+                },
+                appointmentDate: true
             }
         })
 

@@ -33,6 +33,13 @@ export const PostEstablishment = async (req : Request, res : Response) => {
         const reqCity : string = req.body.establishment_city;
         const reqPostalCode : string = req.body.establishment_postal_code;
 
+        if(!reqAddress || !reqCity || !reqPostalCode){
+            return res.status(400).json({
+                success: false,
+                message: "No data provided correctly to create establishment"
+            });
+        }
+
         await Establishment.create({
             address: reqAddress,
             city: reqCity,
@@ -66,6 +73,13 @@ export const UpdateEstablishment = async (req : Request, res : Response) => {
                 success: false,
                 message: "Establishment not found to delete on DB"
             })
+        }
+
+        if(!req.body){
+            return res.status(400).json({
+                success: false,
+                message: "You have to give data to be able to change the establishment"
+            });
         }
 
         const establishmentUpdate = await Establishment.update(

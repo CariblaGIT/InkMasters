@@ -46,6 +46,35 @@ export const UpdateRol = (req : Request, res : Response) => {
 
 }
 
-export const DeleteRol = (req : Request, res : Response) => {
+export const DeleteRol = async (req : Request, res : Response) => {
+    try {
+        const roleId = req.params.id;
 
+        const role = await Role.findOneBy({
+            id: parseInt(roleId)
+        })
+
+        if(!role){
+            return res.status(404).json({
+                success: false,
+                message: "Role not found to delete on DB"
+            })
+        }
+
+        await Role.delete(
+            {id: parseInt(roleId)}
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Roles deleted from DB successfully"
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Delete roles from DB failure",
+            error: error
+        });
+    }
 }

@@ -4,6 +4,8 @@ import { GetServices, PostService, UpdateService, DeleteService } from "./contro
 import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
 import { RegisterUser, LoginUser } from "./controllers/authController";
 import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
+import { auth } from "./middlewares/auth";
+import { isSuperAdmin } from "./middlewares/isSuperAdmin";
 
 export const app : Application = express();
 app.use(express.json());
@@ -33,12 +35,12 @@ app.post('/api/auth/login', LoginUser);
 ========================================
 */
 
-app.get('/api/users', GetUsers);
+app.get('/api/users', auth, isSuperAdmin, GetUsers);
 app.get('/api/users/profile', ProfileUser);
 app.put('/api/users/profile/:id', ModifyUser);
 app.get('/api/users/:email', UserByMail);
-app.delete('/api/users/:id', DeleteUser);
-app.put('/api/users/:id/role', ChangeUserRole);
+app.delete('/api/users/:id', auth, isSuperAdmin, DeleteUser);
+app.put('/api/users/:id/role', auth, isSuperAdmin, ChangeUserRole);
 
 
 /* 
@@ -60,9 +62,9 @@ app.get('/api/appointments', GetAppointments);
 */
 
 app.get('/api/services', GetServices);
-app.post('/api/services', PostService);
-app.put('/api/services/:id', UpdateService);
-app.delete('/api/services/:id', DeleteService);
+app.post('/api/services', auth, isSuperAdmin, PostService);
+app.put('/api/services/:id', auth, isSuperAdmin, UpdateService);
+app.delete('/api/services/:id', auth, isSuperAdmin, DeleteService);
 
 /* 
 ========================================

@@ -42,8 +42,38 @@ export const PostRol = async (req : Request, res : Response) => {
     }
 }
 
-export const UpdateRol = (req : Request, res : Response) => {
+export const UpdateRol = async (req : Request, res : Response) => {
+    try {
+        const roleId = req.params.id;
 
+        const role = await Role.findOneBy({
+            id: parseInt(roleId)
+        })
+
+        if(!role){
+            return res.status(404).json({
+                success: false,
+                message: "Role not found to update on DB"
+            })
+        }
+
+        const roleUpdate = await Role.update(
+            {id: parseInt(roleId)}, req.body
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Role updated into DB successfully",
+            data: roleUpdate
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Update role into DB failure",
+            error: error
+        });
+    }
 }
 
 export const DeleteRol = async (req : Request, res : Response) => {

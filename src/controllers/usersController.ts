@@ -29,8 +29,42 @@ export const GetUsers = async (req : Request, res : Response) => {
     }
 }
 
-export const ProfileUser = (req : Request, res : Response) => {
-    
+export const ProfileUser = async (req : Request, res : Response) => {
+    try {
+
+        const userId : string = (req.query.id!).toString();
+
+        const user = await User.findOne({
+            select : {
+                firstName : true,
+                lastName : true,
+                email : true
+            },
+            where : {
+                id: parseInt(userId)
+            }
+        })
+
+        if(!user){
+            return res.status(404).json({
+                success: false,
+                message: "User not found to update on DB"
+            })
+        }
+
+        return res.status(201).json({
+            success: true,
+            message: "Get profile from user successfully",
+            data: user
+        })
+        
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Getting user profiles failure",
+            error: error
+        });
+    }
 }
 
 export const ModifyUser = async (req : Request, res : Response) => {

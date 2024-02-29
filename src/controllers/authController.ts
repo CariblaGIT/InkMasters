@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import { User } from "../models/User";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import 'dotenv/config';
 
 export const RegisterUser = async (req : Request, res : Response) => {
     try {
@@ -54,11 +56,63 @@ export const RegisterUser = async (req : Request, res : Response) => {
     }
 }
 
-export const LoginUser = (req : Request, res : Response) => {
+export const LoginUser = async (req : Request, res : Response) => {
     try {
-        return res.status(201).json({
+
+        const email = req.body.email;
+        const password = req.body.password;
+
+        if(!email || !password){
+            return res.status(400).json(
+                {
+                  success: false,
+                  message: "Needed to have an email and a password"
+                }
+        )}
+
+        const user = await User.findOne({
+            select : {
+                id: true,
+                passwordHash: true,
+                email: true,
+                role: {
+                    name: true
+                }
+            },
+            where: {
+                email: email
+            },
+            relations: {
+                role: true
+            }
+        })
+
+        if(!user){
+            return res.status(400).json({
+                success: false,
+                message: "Email or password invalid"
+            })
+        }
+
+        if(!bcrypt.compareSync(password, user.passwordHash)){
+            return res.status(400).json({
+                success: false,
+                message: "Email or password invalid"
+            })
+        }
+
+        const token = jwt.sign(
+            {
+                userId: user.id,
+                roleName: user.role.name
+            },
+            process.env.JWT_SECRET as string
+        );
+
+        return res.status(200).json({
             success: true,
-            message: "User logged successfully"
+            message: "User logged successfully",
+            token: token
         })
         
     } catch (error) {

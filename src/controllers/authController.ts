@@ -31,6 +31,13 @@ export const RegisterUser = async (req : Request, res : Response) => {
           )
         }
 
+        if(!reqFirstName || !reqLastName){
+            return res.status(400).json({
+                success: false,
+                message: "No data provided correctly to create user"
+            });
+        }
+
         const cryptedPass = bcrypt.hashSync(reqPass, 8);
 
         await User.create({

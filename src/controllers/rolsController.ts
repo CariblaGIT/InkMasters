@@ -24,6 +24,13 @@ export const PostRol = async (req : Request, res : Response) => {
     try{
         const reqName : string = req.body.role_name;
 
+        if(!reqName){
+            return res.status(400).json({
+                success: false,
+                message: "No data provided to post role"
+            });
+        }
+
         await Role.create({
             name: reqName
         }).save()
@@ -55,6 +62,13 @@ export const UpdateRol = async (req : Request, res : Response) => {
                 success: false,
                 message: "Role not found to update on DB"
             })
+        }
+
+        if(!req.body){
+            return res.status(400).json({
+                success: false,
+                message: "You have to give data to be able to change the role"
+            });
         }
 
         const roleUpdate = await Role.update(

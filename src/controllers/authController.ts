@@ -3,8 +3,8 @@ import { User } from "../models/User";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import 'dotenv/config';
-import { validateEmail } from "../helpers/validateEmail";
-import { validatePassword } from "../helpers/validatePassword";
+import { ValidateEmail } from "../helpers/validateEmail";
+import { ValidatePassword } from "../helpers/validatePassword";
 
 export const RegisterUser = async (req : Request, res : Response) => {
     try {
@@ -15,14 +15,14 @@ export const RegisterUser = async (req : Request, res : Response) => {
         const reqPass : string = req.body.password_hash;
         const reqRole : number = req.body.role_id;
 
-        if(!validatePassword(reqPass)){
+        if(!ValidatePassword(reqPass)){
             return res.status(400).json({
                 success: false,
                 message: "Password not inside the standards (shorter than 10 and without special characters, mayus, minus and/or numbers and with spaces)"
             });
         }
 
-        if (!validateEmail(reqMail)){
+        if (!ValidateEmail(reqMail)){
           return res.status(400).json(
             {
               success: false,
@@ -68,7 +68,7 @@ export const LoginUser = async (req : Request, res : Response) => {
                 }
         )}
 
-        if (!validateEmail(email)){
+        if (!ValidateEmail(email)){
             return res.status(400).json(
               {
                 success: false,

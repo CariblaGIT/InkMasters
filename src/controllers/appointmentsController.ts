@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Appointment } from "../models/Appointment";
-import { validateDate } from "../helpers/validateDate";
+import { ValidateDate } from "../helpers/validateDate";
 
 export const PostAppointment = async (req : Request, res : Response) => {
     try {
@@ -18,7 +18,7 @@ export const PostAppointment = async (req : Request, res : Response) => {
             });
         }
 
-        if(!validateDate(reqDate)){
+        if(!ValidateDate(reqDate)){
             return res.status(400).json({
                 success: false,
                 message: "Appointment date format invalid"

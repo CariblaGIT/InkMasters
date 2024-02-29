@@ -1,4 +1,4 @@
-export const validateDate = (date : Date) => {
+export const ValidateDate = (date : Date) => {
     return (date.toString() === "Invalid Date")
         ? false
         : true

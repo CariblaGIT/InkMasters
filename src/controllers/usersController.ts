@@ -38,7 +38,7 @@ export const GetUsers = async (req : Request, res : Response) => {
 export const ProfileUser = async (req : Request, res : Response) => {
     try {
 
-        const userId : string = (req.query.id!).toString();
+        const userId = req.tokenData.userId;
 
         const user = await User.findOne({
             select : {
@@ -47,7 +47,7 @@ export const ProfileUser = async (req : Request, res : Response) => {
                 email : true
             },
             where : {
-                id: parseInt(userId)
+                id: userId
             }
         })
 
@@ -75,10 +75,10 @@ export const ProfileUser = async (req : Request, res : Response) => {
 
 export const ModifyUser = async (req : Request, res : Response) => {
     try {
-        const userId = req.params.id;
+        const userId = req.tokenData.userId;
 
         const user = await User.findOneBy({
-            id: parseInt(userId)
+            id: userId
         })
 
         if(!user){
@@ -89,7 +89,7 @@ export const ModifyUser = async (req : Request, res : Response) => {
         }
 
         const userUpdate = await User.update(
-            {id: parseInt(userId)}, req.body
+            {id: userId}, req.body
         )
 
         return res.status(200).json({

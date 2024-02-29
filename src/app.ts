@@ -36,8 +36,8 @@ app.post('/api/auth/login', LoginUser);
 */
 
 app.get('/api/users', auth, isSuperAdmin, GetUsers);
-app.get('/api/users/profile', ProfileUser);
-app.put('/api/users/profile/:id', ModifyUser);
+app.get('/api/users/profile', auth, ProfileUser);
+app.put('/api/users/profile/', auth, ModifyUser);
 app.delete('/api/users/:id', auth, isSuperAdmin, DeleteUser);
 app.put('/api/users/:id/role', auth, isSuperAdmin, ChangeUserRole);
 

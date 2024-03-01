@@ -8,23 +8,23 @@ export const GetUsers = async (req : Request, res : Response) => {
 
         if(body.email){
             UserByMail(body.email, res);
+        } else {
+            const allUsers = await User.find({
+                select : {
+                    firstName : true,
+                    lastName : true,
+                    email : true,
+                    createdAt : true,
+                    updatedAt : true
+                }
+            })
+    
+            return res.status(200).json({
+                success: true,
+                message: "Users retrieved from DB successfully",
+                data: allUsers
+            })
         }
-
-        const allUsers = await User.find({
-            select : {
-                firstName : true,
-                lastName : true,
-                email : true,
-                createdAt : true,
-                updatedAt : true
-            }
-        })
-
-        return res.status(200).json({
-            success: true,
-            message: "Users retrieved from DB successfully",
-            data: allUsers
-        })
 
     } catch (error) {
         return res.status(500).json({

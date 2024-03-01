@@ -124,56 +124,56 @@ Also, here you will get 4 different user data of each type of user:
 
 #### Auth table
 
-| METHOD     | URL                      | Description                                                             |
-| ---------- | ------------------------ | ----------------------------------------------------------------------- |
-| `POST`     |`/api/auth/register`      | Register method to create an user (by default, will have the user role) |                    
-| `POST`     |`/api/auth/login`         | Login a user into the service                                           |
+| METHOD     | URL                      | Description                                                                 |
+| ---------- | ------------------------ | --------------------------------------------------------------------------- |
+| `POST`     |`/api/auth/register`      | Register method to create an user (by default, will have the user role)     |                    
+| `POST`     |`/api/auth/login`         | Login a user into the service                                               |
 
 #### Roles table
 
-| METHOD     | URL                       | Description                                                            |
-| ---------- | ------------------------- | ---------------------------------------------------------------------- |
-| `GET`      |`/api/roles`               | Get all roles from DB (only for super_admin users)                     |
-| `POST`     |`/api/roles`               | Post a role into DB (only for super_admin users)                       |
-| `UPDATE`   |`/api/roles/{id}`          | Update a role by ID into DB (only for super_admin users)               |
-| `DELETE`   |`/api/roles/{id}`          | Delete a role by ID from the DB (only for super_admin users)           |
+| METHOD     | URL                       | Description                                                                |
+| ---------- | ------------------------- | -------------------------------------------------------------------------- |
+| `GET`      |`/api/roles`               | Get all roles from DB (only for super_admin users)                         |
+| `POST`     |`/api/roles`               | Post a role into DB (only for super_admin users)                           |
+| `UPDATE`   |`/api/roles/{id}`          | Update a role by ID into DB (only for super_admin users)                   |
+| `DELETE`   |`/api/roles/{id}`          | Delete a role by ID from the DB (only for super_admin users)               |
 
 #### Users table
 
-| METHOD     | URL                       | Description                                                            |
-| ---------- | ------------------------- | ---------------------------------------------------------------------- |
-| `GET`      |`/api/users`               | Get all users from DB (only for super_admin users)                     |
-| `GET`      |`/api/users/profile`       | Get profile from user logged into the API                              |
-| `UPDATE`   |`/api/users/profile`       | Update profile from user logged into the API                           |
-| `UPDATE`   |`/api/users/{id}/role`     | Update a role from user by ID into DB (only for super_admin users)     |
-| `DELETE`   |`/api/users/{id}`          | Delete a user by ID from the DB (only for super_admin users)           |
+| METHOD     | URL                       | Description                                                                |
+| ---------- | ------------------------- | -------------------------------------------------------------------------- |
+| `GET`      |`/api/users`               | Get all users from DB (only for super_admin users) or get a user by email  |
+| `GET`      |`/api/users/profile`       | Get profile from user logged into the API                                  |
+| `UPDATE`   |`/api/users/profile`       | Update profile from user logged into the API                               |
+| `UPDATE`   |`/api/users/{id}/role`     | Update a role from user by ID into DB (only for super_admin users)         |
+| `DELETE`   |`/api/users/{id}`          | Delete a user by ID from the DB (only for super_admin users)               |
 
 #### Services table
 
-| METHOD     | URL                       | Description                                                            |
-| ---------- | ------------------------- | ---------------------------------------------------------------------- |
-| `GET`      |`/api/services`            | Get all services from DB                                               |
-| `POST`     |`/api/services`            | Post a service into DB (only for super_admin users)                    |
-| `UPDATE`   |`/api/services/{id}`       | Update a service by ID into DB (only for super_admin users)            |
-| `DELETE`   |`/api/services/{id}`       | Delete a service by ID from the DB (only for super_admin users)        |
+| METHOD     | URL                       | Description                                                                |
+| ---------- | ------------------------- | -------------------------------------------------------------------------- |
+| `GET`      |`/api/services`            | Get all services from DB                                                   |
+| `POST`     |`/api/services`            | Post a service into DB (only for super_admin users)                        |
+| `UPDATE`   |`/api/services/{id}`       | Update a service by ID into DB (only for super_admin users)                |
+| `DELETE`   |`/api/services/{id}`       | Delete a service by ID from the DB (only for super_admin users)            |
 
 #### Establishments table
 
-| METHOD     | URL                       | Description                                                            |
-| ---------- | ------------------------- | ---------------------------------------------------------------------- |
-| `GET`      |`/api/establishments`      | Get all establishments from DB                                         |
-| `POST`     |`/api/establishments`      | Post an establishment into DB (only for super_admin users)             |
-| `UPDATE`   |`/api/establishments/{id}` | Update an establishment by ID into DB (only for super_admin users)     |
-| `DELETE`   |`/api/establishments/{id}` | Delete an establishment by ID from the DB (only for super_admin users) |
+| METHOD     | URL                       | Description                                                                |
+| ---------- | ------------------------- | -------------------------------------------------------------------------- |
+| `GET`      |`/api/establishments`      | Get all establishments from DB                                             |
+| `POST`     |`/api/establishments`      | Post an establishment into DB (only for super_admin users)                 |
+| `UPDATE`   |`/api/establishments/{id}` | Update an establishment by ID into DB (only for super_admin users)         |
+| `DELETE`   |`/api/establishments/{id}` | Delete an establishment by ID from the DB (only for super_admin users)     |
 
 #### Appointments table
 
-| METHOD     | URL                      | Description                                                            |
-| ---------- | ------------------------ | ---------------------------------------------------------------------- |
-| `GET`      |`/api/appointments`       | Get all appointments from user logged from DB                          |
-| `GET`      |`/api/appointments/{id}`  | Get an appointments from DB                                            |
-| `POST`     |`/api/appointments`       | Post an appointment into DB                                            |
-| `UPDATE`   |`/api/appointments`       | Update an appointment into DB                                          |
+| METHOD     | URL                      | Description                                                                 |
+| ---------- | ------------------------ | --------------------------------------------------------------------------- |
+| `GET`      |`/api/appointments`       | Get all appointments from user logged from DB                               |
+| `GET`      |`/api/appointments/{id}`  | Get an appointments from DB                                                 |
+| `POST`     |`/api/appointments`       | Post an appointment into DB                                                 |
+| `UPDATE`   |`/api/appointments`       | Update an appointment into DB                                               |
 
 ## Future improvements
 

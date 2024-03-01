@@ -26,7 +26,7 @@ export const PostAppointment = async (req : Request, res : Response) => {
         }
 
         const knowExistenceOfTattooer = await User.findOneBy({
-            firstName: reqTattooer
+            email: reqTattooer
         })
 
         if(!knowExistenceOfTattooer){
@@ -54,7 +54,7 @@ export const PostAppointment = async (req : Request, res : Response) => {
             });
         }
 
-        const newAppointment = await Appointment.create({
+        await Appointment.create({
             appointmentDate: reqDate,
             service: knowExistenceOfService,
             establishment: knowExistenceOfEstablishment,
@@ -64,8 +64,7 @@ export const PostAppointment = async (req : Request, res : Response) => {
 
         return res.status(201).json({
             success: true,
-            message: "Appointment registered into DB successfully",
-            data: newAppointment
+            message: "Appointment registered into DB successfully"
         })
         
     } catch (error) {
@@ -88,8 +87,18 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
             });
         }
 
-        const appointment = await Appointment.findOneBy({
-            id: parseInt(appointmentId)
+        const appointment = await Appointment.findOne({
+            where: {
+                id: appointmentId
+            },
+            relations:{
+                user: true
+            },
+            select:{
+                user:{
+                    id: true
+                }
+            }
         })
 
         if(!appointment){
@@ -106,14 +115,76 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
             })
         }
 
-        const appointmentUpdate = await Appointment.update(
-            {id: parseInt(appointmentId)}, req.body
-        )
+        if(req.body.appointmentDate){
+            if(ValidateDate(req.body.appointmentDate)){
+                await Appointment.update(
+                    {id: appointmentId}, {appointmentDate: req.body.appointmentDate}
+                )
+            } else {
+                return res.status(400).json({
+                    success: false,
+                    message: "You dont entered a correct date to update appointment"
+                });
+            }
+        }
+
+        if(req.body.service){
+            const knowExistenceOfService = await Service.findOne({
+                where: {
+                    serviceName: req.body.service
+                }
+            })
+            if(knowExistenceOfService){
+                await Appointment.update(
+                    {id: appointmentId}, {service: knowExistenceOfService}
+                )
+            } else {
+                return res.status(400).json({
+                    success: false,
+                    message: "You dont entered a correct service to update appointment"
+                });
+            }
+        }
+
+        if(req.body.establishment){
+            const knowExistenceOfEstablishment = await Establishment.findOne({
+                where: {
+                    address: req.body.establishment
+                }
+            })
+            if(knowExistenceOfEstablishment){
+                await Appointment.update(
+                    {id: appointmentId}, {establishment: knowExistenceOfEstablishment}
+                )
+            } else {
+                return res.status(400).json({
+                    success: false,
+                    message: "You dont entered a correct establishment to update appointment"
+                });
+            }
+        }
+
+        if(req.body.tattooer){
+            const knowExistenceOfTattooer = await User.findOne({
+                where: {
+                    email: req.body.tattooer
+                }
+            })
+            if(knowExistenceOfTattooer){
+                await Appointment.update(
+                    {id: appointmentId}, {tatooer: knowExistenceOfTattooer}
+                )
+            } else {
+                return res.status(400).json({
+                    success: false,
+                    message: "You dont entered a correct tatooer to update appointment"
+                });
+            }
+        }
 
         return res.status(200).json({
             success: true,
-            message: "Appointment updated into DB successfully",
-            data: appointmentUpdate
+            message: "Appointment updated into DB successfully"
         })
 
     } catch (error) {
@@ -127,16 +198,46 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
 
 export const GetAppointmentById = async (req : Request, res : Response) => {
     try {
-        const appointmentId = req.params.id
+        const appointmentId = parseInt(req.params.id)
 
-        const appointment = await Appointment.findOneBy({
-            id: parseInt(appointmentId)
+        const appointment = await Appointment.findOne({
+            where: {
+                id: appointmentId
+            },
+            relations:{
+                user: true,
+                establishment: true,
+                tatooer: true,
+                service: true
+            },
+            select:{
+                user:{
+                    id: true
+                },
+                establishment:{
+                    address: true
+                },
+                tatooer:{
+                    firstName: true,
+                    lastName: true
+                },
+                service:{
+                    serviceName: true
+                }
+            }
         })
 
         if(!appointment){
             return res.status(404).json({
                 success: false,
                 message: "Appointment not found on DB"
+            })
+        }
+
+        if(appointment.user.id !== req.tokenData.userId){
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized to see that appointment"
             })
         }
 
@@ -170,15 +271,14 @@ export const GetAppointments = async (req : Request, res : Response) => {
             },
             select:{
                 establishment:{
-                    address: true,
-                    city: false,
-                    postalCode: false
+                    address: true
                 },
                 service:{
                     serviceName: true
                 },
                 tatooer:{
-                    firstName: true
+                    firstName: true,
+                    lastName: true
                 },
                 appointmentDate: true
             }

@@ -61,8 +61,8 @@ app.put('/api/users/:id/role', auth, isSuperAdmin, ChangeUserRole);
 ========================================
 */
 
-app.post('/api/appointments', PostAppointment);
-app.put('/api/appointments/:id', UpdateAppointment);
+app.post('/api/appointments', auth, PostAppointment);
+app.put('/api/appointments/', auth, UpdateAppointment);
 app.get('/api/appointments/:id', GetAppointmentById);
 app.get('/api/appointments', auth, GetAppointments);
 

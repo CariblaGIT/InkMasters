@@ -1,20 +1,49 @@
 import { Request, Response } from "express";
 import { Appointment } from "../models/Appointment";
 import { ValidateDate } from "../helpers/validateDate";
+import { Service } from "../models/Service";
+import { User } from "../models/User";
+import { Establishment } from "../models/Establishment";
 
 export const PostAppointment = async (req : Request, res : Response) => {
     try {
 
         const reqDate : Date = req.body.appointment_date;
-        const reqServiceId : number = parseInt(req.body.service_id);
-        const reqEstablishmentId : number = parseInt(req.body.establishment_id);
-        const reqTattooerId : number = parseInt(req.body.tattooer_id);
-        const reqUserId : number = parseInt(req.body.user_id);
+        const reqService : string = req.body.service_name;
+        const reqEstablishment : string = req.body.establishment;
+        const reqTattooer : string = req.body.tattooer;
+        const reqUserId : number = req.tokenData.userId;
 
-        if(isNaN(reqServiceId) || isNaN(reqEstablishmentId) || isNaN(reqTattooerId) || isNaN(reqUserId)){
+        const knowExistenceOfService = await Service.findOneBy({
+            serviceName: reqService
+        })
+
+        if(!knowExistenceOfService){
             return res.status(400).json({
                 success: false,
-                message: "1 or more IDs are bad written (not numbers)"
+                message: "Service selected invalid"
+            });
+        }
+
+        const knowExistenceOfTattooer = await User.findOneBy({
+            firstName: reqTattooer
+        })
+
+        if(!knowExistenceOfTattooer){
+            return res.status(400).json({
+                success: false,
+                message: "Tattooer selected invalid"
+            });
+        }
+
+        const knowExistenceOfEstablishment = await Establishment.findOneBy({
+            address: reqEstablishment
+        })
+
+        if(!knowExistenceOfEstablishment){
+            return res.status(400).json({
+                success: false,
+                message: "Establishment selected invalid"
             });
         }
 
@@ -27,9 +56,9 @@ export const PostAppointment = async (req : Request, res : Response) => {
 
         const newAppointment = await Appointment.create({
             appointmentDate: reqDate,
-            service: {id: reqServiceId},
-            establishment: {id: reqEstablishmentId},
-            tatooer: {id: reqTattooerId},
+            service: knowExistenceOfService,
+            establishment: knowExistenceOfEstablishment,
+            tatooer: knowExistenceOfTattooer,
             user: {id: reqUserId}
         }).save()
 
@@ -50,7 +79,14 @@ export const PostAppointment = async (req : Request, res : Response) => {
 
 export const UpdateAppointment = async (req : Request, res : Response) => {
     try {
-        const appointmentId = req.params.id;
+        const appointmentId = req.body.id;
+
+        if(!parseInt(appointmentId)){
+            return res.status(400).json({
+                success: false,
+                message: "You dont entered a correct ID to update appointment"
+            });
+        }
 
         const appointment = await Appointment.findOneBy({
             id: parseInt(appointmentId)
@@ -60,6 +96,13 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
             return res.status(404).json({
                 success: false,
                 message: "Appointment not found to update on DB"
+            })
+        }
+
+        if(appointment.user.id !== req.tokenData.userId){
+            return res.status(401).json({
+                success: false,
+                message: "Unauthorized to update that appointment"
             })
         }
 

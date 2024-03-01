@@ -89,7 +89,7 @@ On this section, are shown all the endpoints from my API and what does each one,
 
 Also, here you will get 4 different user data of each type of user:
 
-```json
+```JSON
 {
     {
         first_name: "Dani",

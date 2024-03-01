@@ -92,32 +92,32 @@ Also, here you will get 4 different user data of each type of user:
 ```JSON
 {
     {
-        first_name: "Dani",
-        last_name: "Tarrazona",
-        email: "superadmin@superadmin.com",
-        password: "superAdmin",
-        role: "super_admin"
+        "first_name": "Dani",
+        "last_name": "Tarrazona",
+        "email": "superadmin@superadmin.com",
+        "password": "superAdmin",
+        "role": "super_admin"
     },
     {
-        first_name: "David",
-        last_name: "Ochando Blasco",
-        email: "admin@admin.com",
-        password: "admin",
-        role: "admin"
+        "first_name": "David",
+        "last_name": "Ochando Blasco",
+        "email": "admin@admin.com",
+        "password": "admin",
+        "role": "admin"
     },
     {
-        first_name: "User",
-        last_name: "Normal",
-        email: "user@user.com",
-        password: "1234",
-        role: "user"
+        "first_name": "User",
+        "last_name": "Normal",
+        "email": "user@user.com",
+        "password": "1234",
+        "role": "user"
     },
     {
-        first_name: "Mark",
-        last_name: "Inker",
-        email: "mark@inkmasters.com",
-        password: "secretTattooer",
-        role: "tattooer"
+        "first_name": "Mark",
+        "last_name": "Inker",
+        "email": "mark@inkmasters.com",
+        "password": "secretTattooer",
+        "role": "tattooer"
     }
 }
 ```

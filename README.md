@@ -57,17 +57,21 @@ This API is a project focused on the correct implementation of the methods, stru
     ```bash
     npm install
     ```
-3. Create a Docker container using a MySQL image with the data you want to use
+3. Create a Docker container using a MySQL image with the credentials you want to use
 4. Create a .env file with your data from the docker you are using
 5. Initialize database with the migrations (if you dont do the previous .env creation, will be used not real data):
     ```bash
     npm run run-migrations
     ```
-6. Initialize API:
+6. Insert data into database using the seeder command:
+    ```bash
+    npm run seeder
+    ```
+7. Initialize API:
     ```bash
     npm run dev
     ```
-7. Use the endpoints on Postman or other applications with the respective elements to get all data
+8. Use the endpoints on Postman or other applications with the respective elements to get all data
 
 ## API
 

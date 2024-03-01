@@ -11,7 +11,7 @@
   <a href="#stack">Stack</a> •
   <a href="#installation">Installation</a> •
   <a href="#api">API</a> •
-  <a href="#future-improvements">Future improvements</a>
+  <a href="#future-improvements">Future improvements</a> •
   <a href="#support">Support</a> •
   <a href="#you-may-also-like">You may also like...</a>
 </p>
@@ -20,9 +20,9 @@
 
 * Implementation of API REST backend using Express, TypeORM & MySQL
 * Identification of users by role to access to the different API consults achieved by tokens using JWT (JSON Web Token)
-* Server created with Docker and working with MySQL Workbench
+* Server created with Docker and checked with MySQL Workbench
 * Encryptation of the user password using bcrypt
-* Data simulated with seeders
+* Data simulated with seeders and generated using faker
 
 ## Project objective
 
@@ -85,7 +85,42 @@ As the diagram shows, there are 5 tables: roles, users, services, establishments
 
 ### Endpoints and what does each one
 
-On this section, are shown all the endpoints from my API and what does each one, splitted by the differents methods and tables that are related with the consult. <b>IMPORTANT</b>: The super_admin restricted methods are only usable if a user from the DB has logged in using the /auth/login method and has assigned that role, generating a JWT token saved on the request at the tokenData object inside it. If you are using some applications like Postman to check that security, you have to copy paste it inside the Bearer Token Authorization tab. Moreover, there are some other methods that has to be logged as /profile or GET /appointments
+On this section, are shown all the endpoints from my API and what does each one, splitted by the differents methods and tables that are related with the consult. <b>IMPORTANT</b>: The super_admin restricted methods are only usable if a user from the DB has logged in using the /auth/login method and has assigned that role, generating a JWT token saved on the request at the tokenData object inside it. If you are using some applications like Postman to check that security, you have to copy paste it inside the Bearer Token Authorization tab. Moreover, there are some other methods that has to be logged as /profile or GET /appointments.
+
+Also, here you will get 4 different user data of each type of user:
+
+```json
+{
+    {
+        first_name: "Dani",
+        last_name: "Tarrazona",
+        email: "superadmin@superadmin.com",
+        password: "superAdmin",
+        role: "super_admin"
+    },
+    {
+        first_name: "David",
+        last_name: "Ochando Blasco",
+        email: "admin@admin.com",
+        password: "admin",
+        role: "admin"
+    },
+    {
+        first_name: "User",
+        last_name: "Normal",
+        email: "user@user.com",
+        password: "1234",
+        role: "user"
+    },
+    {
+        first_name: "Mark",
+        last_name: "Inker",
+        email: "mark@inkmasters.com",
+        password: "secretTattooer",
+        role: "tattooer"
+    }
+}
+```
 
 #### Auth table
 

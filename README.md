@@ -9,6 +9,7 @@
   <a href="#key-features">Key Features</a> •
   <a href="#project-objective">Project objective</a> •
   <a href="#stack">Stack</a> •
+  <a href="#installation">Installation</a> •
   <a href="#api">API</a> •
   <a href="#future-improvements">Future improvements</a>
   <a href="#support">Support</a> •
@@ -49,6 +50,25 @@ This API is a project focused on the correct implementation of the methods, stru
 </a>
 </div>
 
+## Installation
+
+1. Clone repo
+2. Install dependencies:
+    ```bash
+    npm install
+    ```
+3. Create a Docker container using a MySQL image with the data you want to use
+4. Create a .env file with your data from the docker you are using
+5. Initialize database with the migrations (if you dont do the previous .env creation, will be used not real data):
+    ```bash
+    npm run run-migrations
+    ```
+6. Initialize API:
+    ```bash
+    npm run dev
+    ```
+7. Use the endpoints on Postman or other applications with the respective elements to get all data
+
 ## API
 
 The API makes a relation between the user and the database that is created for the tattoo company InkMasters. The database that is used to achieve this is represented as the following tables:
@@ -61,7 +81,7 @@ As the diagram shows, there are 5 tables: roles, users, services, establishments
 
 ### Endpoints and what does each one
 
-On this section, are shown all the endpoints from my API and what does each one, splitted by the differents methods and tables that are related with the consult. <b>IMPORTANT</b>: The super_admin restricted methods are only usable if a user from the DB has logged in using the /auth/login method and has assigned that role, generating a JWT token saved on the request at the tokenData object inside it. If you are using some applications like Postman to check that security, you have to copy paste it inside the Bearer Token Authorization tab.
+On this section, are shown all the endpoints from my API and what does each one, splitted by the differents methods and tables that are related with the consult. <b>IMPORTANT</b>: The super_admin restricted methods are only usable if a user from the DB has logged in using the /auth/login method and has assigned that role, generating a JWT token saved on the request at the tokenData object inside it. If you are using some applications like Postman to check that security, you have to copy paste it inside the Bearer Token Authorization tab. Moreover, there are some other methods that has to be logged as /profile or GET /appointments
 
 #### Auth table
 

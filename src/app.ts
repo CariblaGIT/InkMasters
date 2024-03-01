@@ -81,7 +81,7 @@ app.delete('/api/services/:id', auth, isSuperAdmin, DeleteService);
 
 /* 
 ========================================
-    METHODS : SERVICES
+    METHODS : ESTABLISHMENTS
 ========================================
 */
 

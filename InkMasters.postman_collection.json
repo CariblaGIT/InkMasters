@@ -1,0 +1,510 @@
+{
+	"info": {
+		"_postman_id": "9099b253-9cc9-4062-bdd8-a8a64d6a48e6",
+		"name": "InkMasters",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "15847842"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "PostUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"Mariano\",\r\n    \"last_name\": \"LaJoiosa\",\r\n    \"email\": \"abecedeefegehache@inkmaster.com\",\r\n    \"password_hash\": \"1Az*F3x$KEq2ZX\",\r\n    \"role\": \"tattooer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/auth/register"
+					},
+					"response": []
+				},
+				{
+					"name": "GetUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkyMDQ3Mjd9.lJxBgc5pdmaJzUW7FfHOeUZRl28t_R2jh5WR1D7mJ_s"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:4000/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserByEmail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"user@user.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/users"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUserById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Carlos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/users/profile"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUserById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:4000/api/users/16"
+					},
+					"response": []
+				},
+				{
+					"name": "LoginUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"superadmin@superadmin.com\",\r\n    \"password\": \"superAdmin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserProfile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:4000/api/users/profile"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRoleToUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"super_admin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users/7/role?role=admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"7",
+								"role"
+							],
+							"query": [
+								{
+									"key": "role",
+									"value": "admin"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Services",
+			"item": [
+				{
+					"name": "GetServices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:4000/api/services"
+					},
+					"response": []
+				},
+				{
+					"name": "PostService",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"service_name\" : \"Washing tattoo\",\r\n    \"description\": \"For offering a nice result to the tattoos, you can ask for a cleaning session to remove the exceeded ink and to keep the result good\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/services"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateServiceById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"serviceName\": \"New hyper realistic tattoos\",\r\n    \"description\": \"Extra to wash the tattoo result from a session\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/services/6"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteServiceById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:4000/api/services/6"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Establishments",
+			"item": [
+				{
+					"name": "GetEstablishments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:4000/api/establishments"
+					},
+					"response": []
+				},
+				{
+					"name": "PostEstablishment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"establishment_address\" : \"Av del Cid, 112\",\r\n    \"establishment_city\": \"Valencia\",\r\n    \"establishment_postal_code\": \"46017\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/establishments"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateEstablishmentById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": \"Calle Estados Unidos del Norte, 123\",\r\n    \"city\": \"La Marimorena\",\r\n    \"postalCode\": 46018\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/establishments/31"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteEstablishmentsById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:4000/api/establishments/31"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointments",
+			"item": [
+				{
+					"name": "GetAppointmentById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:4000/api/appointments/3"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAppointmentsByUserId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkyMDQ3Mjd9.lJxBgc5pdmaJzUW7FfHOeUZRl28t_R2jh5WR1D7mJ_s"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:4000/api/appointments"
+					},
+					"response": []
+				},
+				{
+					"name": "PostAppointment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"appointment_date\": \"2030-10-30\",\r\n    \"service_name\": \"Catalogue tattoos\",\r\n    \"establishment\": \"Extramuros Marta, 46 Esc. 986\",\r\n    \"tattooer\": \"mark@inkmasters.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/appointments/"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAppointmentById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"establishment\": \"Plaza Teresa Rodarte, 72 Puerta 109\",\r\n    \"tatooer\": \"mark@inkmasters.com\",\r\n    \"service\": \"Restoration and rejuvenation\",\r\n    \"appointmentDate\": \"3333-04-05\",\r\n    \"id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/appointments/"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Roles",
+			"item": [
+				{
+					"name": "GetRoles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:4000/api/roles"
+					},
+					"response": []
+				},
+				{
+					"name": "PostRoles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role_name\" : \"cleaner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/roles"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteRoles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:4000/api/roles/5"
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateRoles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGVOYW1lIjoic3VwZXJfYWRtaW4iLCJpYXQiOjE3MDkzMTI5MTB9.3zBb0QOBI6LDjEoHlF0-j8-CgAwTN-rE8SFj_QccLbE"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"shop_cleaner\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:4000/api/roles/5"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

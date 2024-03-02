@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { Establishment } from "../models/Establishment";
+import { ValidatePostalCode } from "../helpers/validatePostalCode";
 
 // ========================================================================================================================================
 //  FUNCTION            | ENDPOINT            | FUNCTIONALITY
@@ -8,13 +9,7 @@ import { Establishment } from "../models/Establishment";
 // ========================================================================================================================================
 export const GetEstablishments = async (req : Request, res : Response) => {
     try {
-        const allEstablishments = await Establishment.find({
-            select : {
-                address : true,
-                city : true,
-                postalCode : true
-            }
-        })
+        const allEstablishments = await Establishment.find();
 
         return res.status(200).json({
             success: true,
@@ -43,18 +38,35 @@ export const PostEstablishment = async (req : Request, res : Response) => {
         const reqCity : string = req.body.establishment_city;
         const reqPostalCode : string = req.body.establishment_postal_code;
 
-        if(!reqAddress || !reqCity || !reqPostalCode){
+        if(!reqAddress){
             return res.status(400).json({
                 success: false,
                 message: "No data provided correctly to create establishment"
             });
         }
 
+        if(!ValidatePostalCode(reqPostalCode)){
+            return res.status(400).json({
+                success: false,
+                message: "No data provided correctly for zipcode"
+            });
+        }
+
         await Establishment.create({
             address: reqAddress,
-            city: reqCity,
-            postalCode: parseInt(reqPostalCode)
         }).save()
+
+        if(reqCity){
+            await Establishment.update(
+                {address: reqAddress}, {city: reqCity}
+            )
+        }
+
+        if(reqPostalCode){
+            await Establishment.update(
+                {address: reqAddress}, {postalCode: parseInt(reqPostalCode)}
+            )
+        }
 
         return res.status(201).json({
             success: true,

@@ -17,8 +17,7 @@ export class Service1709046816685 implements MigrationInterface {
                     {
                         name: "service_name",
                         type: "varchar",
-                        length: "50",
-                        isNullable: false
+                        length: "50"
                     },
                     {
                         name: "description",

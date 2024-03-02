@@ -22,27 +22,23 @@ export class User1709046422962 implements MigrationInterface {
                     {
                         name: "first_name",
                         type: "varchar",
-                        length: "255",
-                        isNullable: false
+                        length: "255"
                     },
                     {
                         name: "last_name",
                         type: "varchar",
-                        length: "255",
-                        isNullable: false
+                        length: "255"
                     },
                     {
                         name: "email",
                         type: "varchar",
                         length: "100",
-                        isNullable: false,
                         isUnique: true
                     },
                     {
                         name: "password_hash",
                         type: "varchar",
-                        length: "255",
-                        isNullable: false
+                        length: "255"
                     },
                     {
                         name: "created_at",
@@ -63,12 +59,6 @@ export class User1709046422962 implements MigrationInterface {
                         referencedColumnNames: ["id"],
                         onDelete: "CASCADE"
                     }
-                ],
-                uniques: [
-                    new TableUnique({
-                        name: "user_unique",
-                        columnNames: ["first_name", "last_name", "email"],
-                     }),
                 ]
             }),
             true

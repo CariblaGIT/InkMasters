@@ -18,17 +18,18 @@ export class Establishment1709048119354 implements MigrationInterface {
                         name: "address",
                         type: "varchar",
                         length: "255",
-                        isNullable: false,
                         isUnique: true
                     },
                     {
                         name: "city",
                         type: "varchar",
+                        isNullable: true,
                         length: "255"
                     },
                     {
                         name: "postal_code",
-                        type: "int"
+                        type: "int",
+                        isNullable: true,
                     }
                 ]
             }),

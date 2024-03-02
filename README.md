@@ -16,7 +16,7 @@
   <a href="#you-may-also-like">You may also like...</a>
 </p>
 
-## Key Features
+## 🔑 Key Features
 
 * Implementation of API REST backend using Express, TypeORM & MySQL
 * Identification of users by role to access to the different API consults achieved by tokens using JWT (JSON Web Token)
@@ -24,11 +24,11 @@
 * Encryptation of the user password using bcrypt
 * Data simulated with seeders and generated using faker
 
-## Project objective
+## 🎯 Project objective
 
 This API is a project focused on the correct implementation of the methods, structure and parts related to the backend of an application that uses a personalized API REST. Focusing on the bussiness model, this project tries to represent how will be the back-end logic for a tattoo shop bussiness, with the users related to the activity, the services the shop offers to customers, the different establishments the company could have and the main feature: the appointments list creation that the shop offers to the customers. 
 
-## Stack
+## ⌨️ Stack
 <div align="center">
 <a href="https://www.typescriptlang.org/docs/">
     <img src= "https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/>
@@ -50,7 +50,7 @@ This API is a project focused on the correct implementation of the methods, stru
 </a>
 </div>
 
-## Installation
+## 👨‍💻 Installation
 
 1. Clone repo
 2. Install dependencies:
@@ -73,7 +73,7 @@ This API is a project focused on the correct implementation of the methods, stru
     ```
 8. Use the endpoints on Postman or other applications with the respective elements to get all data
 
-## API
+## 🔗 API
 
 The API makes a relation between the user and the database that is created for the tattoo company InkMasters. The database that is used to achieve this is represented as the following tables:
 
@@ -87,7 +87,7 @@ As the diagram shows, there are 5 tables: roles, users, services, establishments
 
 On this section, are shown all the endpoints from my API and what does each one, splitted by the differents methods and tables that are related with the consult. <b>IMPORTANT</b>: The super_admin restricted methods are only usable if a user from the DB has logged in using the /auth/login method and has assigned that role, generating a JWT token saved on the request at the tokenData object inside it. If you are using some applications like Postman to check that security, you have to copy paste it inside the Bearer Token Authorization tab. Moreover, there are some other methods that has to be logged as /profile or GET /appointments.
 
-Also, here you will get 4 different user data of each type of user:
+Also, here you will get 4 different user data of each type of user that are created with the seeder (if you dont execute the seeder, you will not have created this users):
 
 ```JSON
 {
@@ -175,7 +175,107 @@ Also, here you will get 4 different user data of each type of user:
 | `POST`     |`/api/appointments`       | Post an appointment into DB                                                 |
 | `UPDATE`   |`/api/appointments`       | Update an appointment into DB                                               |
 
-## Future improvements
+### Body to give and in which method is required to use it
+
+* POST in /api/auth/register
+```js
+{
+    "first_name" : "Mariano",
+    "last_name": "LaJoiosa",
+    "email": "abecedeefegehache@inkmaster.com",
+    "password_hash": "1Az*F3x$KEq2ZX",
+    "role": "tattooer"
+}
+```
+
+* POST in /api/auth/login
+```js
+{
+    "email" : "superadmin@superadmin.com",
+    "password": "superAdmin"
+}
+```
+
+* GET in api/users (could be without body if you want to get all users)
+```js
+{
+    "email": "user@user.com"
+}
+```
+
+* PUT in api/users/profile (you can select some or all this params inside the body)
+```js
+{
+    "firstName": "Carlos",
+    "lastName": "Ibañez Lamas",
+    "email": "example@gmail.com",
+    "passwordHash": 'Um2$Zsv_P7#xs%'
+}
+```
+
+* PUT in api/users/:id/role
+```js
+{
+    "role": "super_admin"
+}
+```
+
+* POST in api/services
+```js
+{
+    "service_name" : "Washing tattoo",
+    "description": "For offering a nice result to the tattoos, you can ask for a cleaning session to remove the exceeded ink and to keep the result good"
+}
+```
+
+* PUT in api/services/:id (you can select some or all this params inside the body)
+```js
+{
+    "serviceName": "New hyper realistic tattoos",
+    "description": "Extra realistic tattoo result from a session"
+}
+```
+
+* POST in api/establishments
+```js
+{
+    "establishment_address" : "Av del Cid, 112",
+    "establishment_city": "Valencia",
+    "establishment_postal_code": "46017"
+}
+```
+
+* PUT in api/establishments/:id (you can select some or all this params inside the body)
+```js
+{
+    "address": "Calle Estados Unidos del Norte, 123",
+    "city": "La Marimorena",
+    "postalCode": 46018
+}
+```
+
+* POST in api/appointments
+```js
+{
+    "appointment_date": "2030-10-30",
+    "service_name": "Catalogue tattoos",
+    "establishment": "Extramuros Marta, 46 Esc. 986",
+    "tattooer": "mark@inkmasters.com"
+}
+```
+
+* PUT in api/appointments/:id (you can select some or all this params inside the body, but IS NECESSARY THE ID)
+```js
+{
+    "establishment": "Plaza Teresa Rodarte, 72 Puerta 109",
+    "tatooer": "mark@inkmasters.com",
+    "service": "Restoration and rejuvenation",
+    "appointmentDate": "3333-04-05",
+    "id": 1
+}
+```
+
+## 🛠️ Future improvements
 
 ⬜ Implementing front-end to use the API
 <br>
@@ -185,13 +285,13 @@ Also, here you will get 4 different user data of each type of user:
 <br>
 ⬜ Splitting the different validations inside functions
 
-## Support
+## 💪 Support
 
 <div align="center">
 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important; box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 </div>
 
-## You may also like...
+## 👀 You may also like...
 
 - [Between Sins](https://gitlab.com/daghdha1/betweensins) - RPG videogame 
 - [Mars Alienated](https://gitlab.com/AdrianGarciaAndreu/mars-alienated-rv-htc) - VR escape room experience in a space station

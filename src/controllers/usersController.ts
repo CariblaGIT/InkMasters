@@ -204,7 +204,7 @@ export const DeleteUser = async (req : Request, res : Response) => {
 export const ChangeUserRole = async (req : Request, res : Response) => {
     try {
         const userId = req.params.id;
-        const newRole = (req.query.role!).toString();
+        const newRole = req.body.role;
 
         const user = await User.findOneBy({
             id: parseInt(userId)

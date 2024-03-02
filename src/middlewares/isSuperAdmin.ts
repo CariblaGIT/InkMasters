@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
 import 'dotenv/config';
-import { TokenData } from "../types";
 
+// Middleware to check if in the JWT the user has the role super_admin to do certain operations
 export const isSuperAdmin = (req: Request, res: Response, next: NextFunction) => {
     try {
         if(req.tokenData.roleName !== "super_admin"){

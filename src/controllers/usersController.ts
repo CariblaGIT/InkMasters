@@ -2,6 +2,11 @@ import { Request, Response } from "express";
 import { User } from "../models/User";
 import { Role } from "../models/Role";
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT     | FUNCTIONALITY
+//                | GET          | This function gets all the users from the database or a user by email given on the body of the petition
+//  GetUsers()    | /api/users   | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const GetUsers = async (req : Request, res : Response) => {
     try {
         const body = req.body
@@ -35,6 +40,11 @@ export const GetUsers = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT           | FUNCTIONALITY
+//                | GET                | This function gets the user profile by ID given from the token inside the petition
+//  ProfileUser() | /api/users/profile | To make this petition, the user has to been logged in previously
+// ========================================================================================================================================
 export const ProfileUser = async (req : Request, res : Response) => {
     try {
 
@@ -73,6 +83,12 @@ export const ProfileUser = async (req : Request, res : Response) => {
     }
 }
 
+
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT     | FUNCTIONALITY
+//                | PUT          | This function modifies the user profile by ID given from the token inside the petition
+//  ModifyUser()  | /api/users   | To make this petition, the user has to been logged in previously
+// ========================================================================================================================================
 export const ModifyUser = async (req : Request, res : Response) => {
     try {
         const userId = req.tokenData.userId;
@@ -107,6 +123,11 @@ export const ModifyUser = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT     | FUNCTIONALITY
+//                | GET          | This function is called from the previously method if has a email body param (GetUsers())
+//  userByMail()  | /api/users   | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 const UserByMail = async (email : string, res : Response) => {
     try {
         const user = await User.findOneBy({
@@ -135,6 +156,12 @@ const UserByMail = async (email : string, res : Response) => {
     }
 }
 
+
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT       | FUNCTIONALITY
+//                | DELETE         | This function removes completely a user from the DB by an ID introduced as param on the URL
+//  DeleteUser()  | /api/users/:id | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const DeleteUser = async (req : Request, res : Response) => {
     try {
         const userId = req.params.id;
@@ -168,6 +195,12 @@ export const DeleteUser = async (req : Request, res : Response) => {
     }
 }
 
+
+// ========================================================================================================================================
+//  FUNCTION         | ENDPOINT            | FUNCTIONALITY
+//                   | PUT                 | This function modifies the user role assigned to a user ID given as param on the URL
+//  ChangeUserRole() | /api/users/:id/role | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const ChangeUserRole = async (req : Request, res : Response) => {
     try {
         const userId = req.params.id;

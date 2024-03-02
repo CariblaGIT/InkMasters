@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import { Service } from "../models/Service";
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT      | FUNCTIONALITY
+//                | GET           | 
+//  GetServices() | /api/services | This function gets all services offered by the company from the DB
+// ========================================================================================================================================
 export const GetServices = async (req : Request, res : Response) => {
     try {
         const allServices = await Service.find({
@@ -26,6 +31,12 @@ export const GetServices = async (req : Request, res : Response) => {
     }
 }
 
+
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT      | FUNCTIONALITY
+//                | POST          | This function post a new service by giving a name and a description into the DB
+//  PostService() | /api/services | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const PostService = async (req : Request, res : Response) => {
     try {
 
@@ -58,6 +69,11 @@ export const PostService = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION        | ENDPOINT          | FUNCTIONALITY
+//                  | PUT               | This function modifies the service name or description assigned to a service ID given as param on the URL
+//  UpdateService() | /api/services/:id | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const UpdateService = async (req : Request, res : Response) => {
     try {
         const serviceId = req.params.id;
@@ -99,6 +115,11 @@ export const UpdateService = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION        | ENDPOINT          | FUNCTIONALITY
+//                  | DELETE            | This function removes completely a service from the DB by an ID introduced as param on the URL
+//  DeleteService() | /api/services/:id | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const DeleteService = async (req : Request, res : Response) => {
     try {
         const serviceId = req.params.id;

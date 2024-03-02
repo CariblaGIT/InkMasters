@@ -3,6 +3,7 @@ import { User } from '../../models/User';
 import { Role } from '../../models/Role';
 import bcrypt from "bcrypt";
 
+// Seeder function using faker to simulate random spanish user data
 export const generateFakeUsers = async () => {
     const user : User = new User();
     const listRoles = await Role.find();

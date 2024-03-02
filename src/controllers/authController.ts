@@ -6,6 +6,11 @@ import 'dotenv/config';
 import { ValidateEmail } from "../helpers/validateEmail";
 import { ValidatePassword } from "../helpers/validatePassword";
 
+// ========================================================================================================================================
+//  FUNCTION       | ENDPOINT           | FUNCTIONALITY
+//                 | POST               | This function post a new user into the DB by giving all the params related to an user and created
+//  RegisterUser() | /api/auth/register | as a normal user (role = 'user'), with a good email and encrypted and hard to crack password
+// ========================================================================================================================================
 export const RegisterUser = async (req : Request, res : Response) => {
     try {
 
@@ -62,6 +67,11 @@ export const RegisterUser = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT         | FUNCTIONALITY
+//                | POST             | This function allows a user with a credentials inside the DB as email and password to enter inside
+//  LoginUser()   | /api/auth/login  | the application, returning a JWT token to allow the user to do the actions assigned to that role
+// ========================================================================================================================================
 export const LoginUser = async (req : Request, res : Response) => {
     try {
         const email = req.body.email;

@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import { Establishment } from "../models/Establishment";
 
+// ========================================================================================================================================
+//  FUNCTION            | ENDPOINT            | FUNCTIONALITY
+//                      | GET                 | 
+//  GetEstablishments() | /api/establishments | This function gets all establishments from the company that are on the DB
+// ========================================================================================================================================
 export const GetEstablishments = async (req : Request, res : Response) => {
     try {
         const allEstablishments = await Establishment.find({
@@ -26,6 +31,11 @@ export const GetEstablishments = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION            | ENDPOINT            | FUNCTIONALITY
+//                      | POST                | This function post a new establishment by giving an address, city and zipcode into the DB
+//  PostEstablishment() | /api/establishments | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const PostEstablishment = async (req : Request, res : Response) => {
     try {
 
@@ -60,6 +70,11 @@ export const PostEstablishment = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION              | ENDPOINT                | FUNCTIONALITY
+//                        | PUT                     | This function modifies the establishment data assigned to a establishment ID given as param on the URL
+//  UpdateEstablishment() | /api/establishments/:id | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const UpdateEstablishment = async (req : Request, res : Response) => {
     try {
         const establishmentId = req.params.id;
@@ -101,6 +116,11 @@ export const UpdateEstablishment = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION               | ENDPOINT                | FUNCTIONALITY
+//                         | DELETE                  | This function removes completely an establishment from the DB by an ID introduced as param on the URL
+//  DeleteeEstablishment() | /api/establishments/:id | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const DeleteEstablishment = async (req : Request, res : Response) => {
     try {
         const establishmentId = req.params.id;

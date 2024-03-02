@@ -5,6 +5,11 @@ import { Service } from "../models/Service";
 import { User } from "../models/User";
 import { Establishment } from "../models/Establishment";
 
+// ========================================================================================================================================
+//  FUNCTION          | ENDPOINT          | FUNCTIONALITY
+//                    | POST              | This function post a new appointment by giving all the data referenced to one of them (date, relation to the service,
+//  PostAppointment() | /api/appointments | relation to the local, relation to the employee and the user given by the token (you have to be logged in))
+// ========================================================================================================================================
 export const PostAppointment = async (req : Request, res : Response) => {
     try {
 
@@ -76,6 +81,11 @@ export const PostAppointment = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION            | ENDPOINT          | FUNCTIONALITY
+//                      | PUT               | This function updates an appointment from a user logged in (is checked) and updates checking what data is given
+//  UpdateAppointment() | /api/appointments | (date, relation to the service, relation to the local, relation to the employee) to update it
+// ========================================================================================================================================
 export const UpdateAppointment = async (req : Request, res : Response) => {
     try {
         const appointmentId = req.body.id;
@@ -195,6 +205,11 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION             | ENDPOINT              | FUNCTIONALITY
+//                       | GET                   | This function gets a specific appointment by an ID introduced as param on the URL
+//  GetAppointmentById() | /api/appointments/:id | But, if the user logged is not assigned to that appointment, is returned an error
+// ========================================================================================================================================
 export const GetAppointmentById = async (req : Request, res : Response) => {
     try {
         const appointmentId = parseInt(req.params.id)
@@ -255,6 +270,11 @@ export const GetAppointmentById = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION           | ENDPOINT           | FUNCTIONALITY
+//                     | GET                | This function gets all appointments by ID given from the token inside the petition
+//  GetAppointments()  | /api/appointments/ | For doing this petition, you have to be logged in as an user from the app
+// ========================================================================================================================================
 export const GetAppointments = async (req : Request, res : Response) => {
     try {
         const userId = req.tokenData.userId;

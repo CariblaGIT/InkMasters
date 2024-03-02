@@ -1,18 +1,19 @@
 import "reflect-metadata";
 import 'dotenv/config';
 import { DataSource } from "typeorm";
-import { Role1709046301199 } from "./migrations/1709046301199-role";
-import { User1709046422962 } from "./migrations/1709046422962-user";
-import { Service1709046816685 } from "./migrations/1709046816685-service";
-import { Establishment1709048119354 } from "./migrations/1709048119354-establishment";
-import { Appointment1709048828757 } from "./migrations/1709048828757-appointment";
-import { TattooerCheckConstrait1709049515463 } from "./migrations/1709049515463-tattooerCheckConstrait";
 import { Role } from "../models/Role";
 import { User } from "../models/User";
 import { Service } from "../models/Service";
-import { Establishment } from "../models/Establishment";
 import { Appointment } from "../models/Appointment";
+import { Establishment } from "../models/Establishment";
+import { Role1709046301199 } from "./migrations/1709046301199-role";
+import { User1709046422962 } from "./migrations/1709046422962-user";
+import { Service1709046816685 } from "./migrations/1709046816685-service";
+import { Appointment1709048828757 } from "./migrations/1709048828757-appointment";
+import { Establishment1709048119354 } from "./migrations/1709048119354-establishment";
+import { TattooerCheckConstrait1709049515463 } from "./migrations/1709049515463-tattooerCheckConstrait";
 
+// Datasource linked with server running MySQL. (WARNING : To assign your desired variables, you have tpo save them on a .env file that you have to create following the .env.sample file)
 export const AppDataSource = new DataSource({
     type: "mysql",
     host: process.env.DB_HOST || "localhost",

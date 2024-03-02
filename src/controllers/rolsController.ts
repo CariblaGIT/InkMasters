@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import { Role } from "../models/Role";
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT     | FUNCTIONALITY
+//                | GET          | This function gets all users roles from the DB
+//  GetRoles()    | /api/roles   | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const GetRoles = async (req : Request, res : Response) => {
     try {
         const allRoles = await Role.find();
@@ -20,6 +25,11 @@ export const GetRoles = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT     | FUNCTIONALITY
+//                | POST         | This function post a new role by his name into the DB
+//  PostRol()     | /api/roles   | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const PostRol = async (req : Request, res : Response) => {
     try{
         const reqName : string = req.body.role_name;
@@ -49,6 +59,11 @@ export const PostRol = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT       | FUNCTIONALITY
+//                | PUT            | This function modifies the role name assigned to a role ID given as param on the URL
+//  UpdateRol()   | /api/roles/:id | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const UpdateRol = async (req : Request, res : Response) => {
     try {
         const roleId = req.params.id;
@@ -90,6 +105,11 @@ export const UpdateRol = async (req : Request, res : Response) => {
     }
 }
 
+// ========================================================================================================================================
+//  FUNCTION      | ENDPOINT       | FUNCTIONALITY
+//                | DELETE         | This function removes completely a role from the DB by an ID introduced as param on the URL
+//  DeleteRol()   | /api/roles/:id | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
 export const DeleteRol = async (req : Request, res : Response) => {
     try {
         const roleId = req.params.id;

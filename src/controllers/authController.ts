@@ -5,11 +5,12 @@ import jwt from "jsonwebtoken";
 import 'dotenv/config';
 import { ValidateEmail } from "../helpers/validateEmail";
 import { ValidatePassword } from "../helpers/validatePassword";
+import { Role } from "../models/Role";
 
 // ========================================================================================================================================
 //  FUNCTION       | ENDPOINT           | FUNCTIONALITY
 //                 | POST               | This function post a new user into the DB by giving all the params related to an user and created
-//  RegisterUser() | /api/auth/register | as a normal user (role = 'user'), with a good email and encrypted and hard to crack password
+//  RegisterUser() | /api/auth/register | as a normal user (by default role = 'user'), with a good email and encrypted and hard to crack password
 // ========================================================================================================================================
 export const RegisterUser = async (req : Request, res : Response) => {
     try {
@@ -18,7 +19,7 @@ export const RegisterUser = async (req : Request, res : Response) => {
         const reqFirstName : string = req.body.first_name;
         const reqLastName : string = req.body.last_name;
         const reqPass : string = req.body.password_hash;
-        const reqRole : number = req.body.role_id;
+        const reqRole : string = req.body.role;
 
         if(!ValidatePassword(reqPass)){
             return res.status(400).json({
@@ -43,6 +44,17 @@ export const RegisterUser = async (req : Request, res : Response) => {
             });
         }
 
+        let newRole;
+        if(reqRole){
+            newRole = await Role.findOneBy({name: reqRole})
+            if(!newRole){
+                return res.status(400).json({
+                    success: false,
+                    message: "Wrong role give to create user"
+                });
+            }
+        }
+
         const cryptedPass = bcrypt.hashSync(reqPass, 8);
 
         await User.create({
@@ -50,19 +62,24 @@ export const RegisterUser = async (req : Request, res : Response) => {
             lastName: reqLastName,
             email: reqMail,
             passwordHash: cryptedPass,
-            role: {id: reqRole}
         }).save()
+
+        if(reqRole){
+            await User.update(
+                {email: reqMail}, {role: newRole}
+            )
+        }
 
         return res.status(201).json({
             success: true,
             message: "User registered into DB successfully"
         })
         
-    } catch (error) {
+    } catch (error : any) {
         return res.status(500).json({
             success: false,
             message: "Register user failure",
-            error: error
+            error: error.message
         });
     }
 }

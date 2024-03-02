@@ -79,6 +79,7 @@ export const PostAppointment = async (req : Request, res : Response) => {
 export const UpdateAppointment = async (req : Request, res : Response) => {
     try {
         const appointmentId = req.body.id;
+        let checkBodyParams : any = [];
 
         if(!parseInt(appointmentId)){
             return res.status(400).json({
@@ -117,9 +118,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
 
         if(req.body.appointmentDate){
             if(ValidateDate(req.body.appointmentDate)){
-                await Appointment.update(
-                    {id: appointmentId}, {appointmentDate: req.body.appointmentDate}
-                )
+                checkBodyParams.push({appointmentDate: req.body.appointmentDate})
             } else {
                 return res.status(400).json({
                     success: false,
@@ -135,9 +134,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
                 }
             })
             if(knowExistenceOfService){
-                await Appointment.update(
-                    {id: appointmentId}, {service: knowExistenceOfService}
-                )
+                checkBodyParams.push({service: knowExistenceOfService})
             } else {
                 return res.status(400).json({
                     success: false,
@@ -153,9 +150,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
                 }
             })
             if(knowExistenceOfEstablishment){
-                await Appointment.update(
-                    {id: appointmentId}, {establishment: knowExistenceOfEstablishment}
-                )
+                checkBodyParams.push({establishment: knowExistenceOfEstablishment})
             } else {
                 return res.status(400).json({
                     success: false,
@@ -171,15 +166,19 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
                 }
             })
             if(knowExistenceOfTattooer){
-                await Appointment.update(
-                    {id: appointmentId}, {tatooer: knowExistenceOfTattooer}
-                )
+                checkBodyParams.push({tattooer: knowExistenceOfTattooer})
             } else {
                 return res.status(400).json({
                     success: false,
                     message: "You dont entered a correct tatooer to update appointment"
                 });
             }
+        }
+
+        for(let i = 0; i < checkBodyParams.length; i++){
+            await Appointment.update(
+                {id: appointmentId}, checkBodyParams[i]
+            )
         }
 
         return res.status(200).json({

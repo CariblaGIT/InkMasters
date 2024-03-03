@@ -241,7 +241,7 @@ Also, here you will get 4 different user data of each type of user that are crea
 {
     "establishment_address" : "Av del Cid, 112",
     "establishment_city": "Valencia",
-    "establishment_postal_code": "46017"
+    "establishment_postal_code": 46017
 }
 ```
 

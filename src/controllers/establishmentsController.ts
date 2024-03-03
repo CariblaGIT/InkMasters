@@ -36,7 +36,7 @@ export const PostEstablishment = async (req : Request, res : Response) => {
 
         const reqAddress : string = req.body.establishment_address;
         const reqCity : string = req.body.establishment_city;
-        const reqPostalCode : string = req.body.establishment_postal_code;
+        const reqPostalCode : number = req.body.establishment_postal_code;
 
         if(!reqAddress){
             return res.status(400).json({
@@ -64,7 +64,7 @@ export const PostEstablishment = async (req : Request, res : Response) => {
 
         if(reqPostalCode){
             await Establishment.update(
-                {address: reqAddress}, {postalCode: parseInt(reqPostalCode)}
+                {address: reqAddress}, {postalCode: reqPostalCode}
             )
         }
 

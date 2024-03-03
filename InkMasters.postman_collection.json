@@ -288,7 +288,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"establishment_address\" : \"Av del Cid, 112\",\r\n    \"establishment_city\": \"Valencia\",\r\n    \"establishment_postal_code\": \"46017\"\r\n}",
+							"raw": "{\r\n    \"establishment_address\" : \"Av del Cid, 112\",\r\n    \"establishment_city\": \"Valencia\",\r\n    \"establishment_postal_code\": 46017\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "9099b253-9cc9-4062-bdd8-a8a64d6a48e6",
-		"name": "InkMasters",
+		"_postman_id": "b02f1004-e552-4fde-b781-2838dd98f3fd",
+		"name": "InkMasters FL0",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "15847842"
 	},
@@ -23,7 +23,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/auth/register"
+						"url": "{{server}}/api/auth/register"
 					},
 					"response": []
 				},
@@ -38,7 +38,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:4000/api/users"
+						"url": "{{server}}/api/users"
 					},
 					"response": []
 				},
@@ -65,7 +65,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/users"
+						"url": "{{server}}/api/users"
 					},
 					"response": []
 				},
@@ -82,14 +82,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Carlos\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Daniel\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/users/profile"
+						"url": "{{server}}/api/users/profile"
 					},
 					"response": []
 				},
@@ -104,7 +104,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:4000/api/users/16"
+						"url": "{{server}}/api/users/16"
 					},
 					"response": []
 				},
@@ -122,7 +122,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/auth/login"
+						"url": "{{server}}/api/auth/login"
 					},
 					"response": []
 				},
@@ -137,7 +137,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:4000/api/users/profile"
+						"url": "{{server}}/api/users/profile"
 					},
 					"response": []
 				},
@@ -154,33 +154,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"role\": \"super_admin\"\r\n}",
+							"raw": "{\r\n    \"role\": \"tattooer\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": {
-							"raw": "http://localhost:4000/api/users/7/role?role=admin",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"users",
-								"7",
-								"role"
-							],
-							"query": [
-								{
-									"key": "role",
-									"value": "admin"
-								}
-							]
-						}
+						"url": "{{server}}/api/users/5/role"
 					},
 					"response": []
 				}
@@ -194,7 +175,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:4000/api/services"
+						"url": "{{server}}/api/services"
 					},
 					"response": []
 				},
@@ -218,7 +199,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/services"
+						"url": "{{server}}/api/services"
 					},
 					"response": []
 				},
@@ -242,7 +223,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/services/6"
+						"url": "{{server}}/api/services/6"
 					},
 					"response": []
 				},
@@ -257,7 +238,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:4000/api/services/6"
+						"url": "{{server}}/api/services/6"
 					},
 					"response": []
 				}
@@ -271,7 +252,7 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:4000/api/establishments"
+						"url": "{{server}}/api/establishments"
 					},
 					"response": []
 				},
@@ -288,14 +269,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"establishment_address\" : \"Av del Cid, 112\",\r\n    \"establishment_city\": \"Valencia\",\r\n    \"establishment_postal_code\": 46017\r\n}",
+							"raw": "{\r\n    \"establishment_address\" : \"Av del Cid, 112\",\r\n    \"establishment_city\": \"Valencia\",\r\n    \"establishment_postal_code\": \"46017\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/establishments"
+						"url": "{{server}}/api/establishments"
 					},
 					"response": []
 				},
@@ -319,7 +300,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/establishments/31"
+						"url": "{{server}}/api/establishments/33"
 					},
 					"response": []
 				},
@@ -334,7 +315,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:4000/api/establishments/31"
+						"url": "{{server}}/api/establishments/33"
 					},
 					"response": []
 				}
@@ -354,7 +335,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:4000/api/appointments/3"
+						"url": "{{server}}/api/appointments/2"
 					},
 					"response": []
 				},
@@ -369,7 +350,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:4000/api/appointments"
+						"url": "{{server}}/api/appointments"
 					},
 					"response": []
 				},
@@ -386,14 +367,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"appointment_date\": \"2030-10-30\",\r\n    \"service_name\": \"Catalogue tattoos\",\r\n    \"establishment\": \"Extramuros Marta, 46 Esc. 986\",\r\n    \"tattooer\": \"mark@inkmasters.com\"\r\n}",
+							"raw": "{\r\n    \"appointment_date\": \"2030-10-30\",\r\n    \"service_name\": \"Catalogue tattoos\",\r\n    \"establishment\": \"Calle de las Alegrias y Amarguras, 123\",\r\n    \"tattooer\": \"mark@inkmasters.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/appointments/"
+						"url": "{{server}}/api/appointments/"
 					},
 					"response": []
 				},
@@ -410,14 +391,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"establishment\": \"Plaza Teresa Rodarte, 72 Puerta 109\",\r\n    \"tatooer\": \"mark@inkmasters.com\",\r\n    \"service\": \"Restoration and rejuvenation\",\r\n    \"appointmentDate\": \"3333-04-05\",\r\n    \"id\": 1\r\n}",
+							"raw": "{\r\n    \"establishment\": \"Avenida del Cid, 12345\",\r\n    \"tatooer\": \"mark@inkmasters.com\",\r\n    \"service\": \"Restoration and rejuvenation\",\r\n    \"appointmentDate\": \"3333-04-05\",\r\n    \"id\": 22\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/appointments/"
+						"url": "{{server}}/api/appointments/"
 					},
 					"response": []
 				}
@@ -437,7 +418,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "http://localhost:4000/api/roles"
+						"url": "{{server}}/api/roles"
 					},
 					"response": []
 				},
@@ -461,7 +442,7 @@
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/roles"
+						"url": "{{server}}/api/roles"
 					},
 					"response": []
 				},
@@ -476,7 +457,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "http://localhost:4000/api/roles/5"
+						"url": "{{server}}/api/roles/5"
 					},
 					"response": []
 				},
@@ -493,18 +474,50 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\" : \"shop_cleaner\"\r\n}",
+							"raw": "{\r\n    \"name\" : \"tatooer\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "http://localhost:4000/api/roles/5"
+						"url": "{{server}}/api/roles/5"
 					},
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "https://inkmasters-dev-mqbj.2.us-1.fl0.io",
+			"type": "string"
+		},
+		{
+			"key": "local",
+			"value": "http://localhost:4000",
+			"type": "string"
 		}
 	]
 }

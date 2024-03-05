@@ -52,13 +52,15 @@ This API is a project focused on the correct implementation of the methods, stru
 
 ## 👨‍💻 Installation
 
+Follow the steps to emulate the project in your local device. But is not necessary because the project has been uploaded to FL0, so you can skip the installation and use the following URL to make all the consults in front of your localhost one: https://inkmasters-dev-mqbj.2.us-1.fl0.io
+
 1. Clone repo
 2. Install dependencies:
     ```bash
     npm install
     ```
 3. Create a Docker container using a MySQL image with the credentials you want to use
-4. Create a .env file with your data from the docker you are using
+4. Create a .env file with your data from the docker you are using on the project, following the .env.sample file variables and at that level of the director files
 5. Initialize database with the migrations (if you dont do the previous .env creation, will be used not real data):
     ```bash
     npm run run-migrations
@@ -87,7 +89,32 @@ As the diagram shows, there are 5 tables: roles, users, services, establishments
 
 On this section, are shown all the endpoints from my API and what does each one, splitted by the differents methods and tables that are related with the consult. <b>IMPORTANT</b>: The super_admin restricted methods are only usable if a user from the DB has logged in using the /auth/login method and has assigned that role, generating a JWT token saved on the request at the tokenData object inside it. If you are using some applications like Postman to check that security, you have to copy paste it inside the Bearer Token Authorization tab. Moreover, there are some other methods that has to be logged as /profile or GET /appointments.
 
-Also, here you will get 4 different user data of each type of user that are created with the seeder (if you dont execute the seeder, you will not have created this users):
+Also, here you will get the data from 4 users, all roles, 2 establishments and all services that are created by the seeder, to have data to make the petitions you desire (if you dont execute the seeder, you will not have created this data, and you will not create the random data for all the tables):
+
+* ROLES
+
+```JSON
+{
+    {
+        "id": 1,
+        "name": "user"
+    },
+    {
+        "id": 2,
+        "name": "admin"
+    },
+    {
+        "id": 3,
+        "name": "super_admin"
+    },
+    {
+        "id": 4,
+        "name": "tattooer"
+    }
+}
+```
+
+* USERS
 
 ```JSON
 {
@@ -118,6 +145,50 @@ Also, here you will get 4 different user data of each type of user that are crea
         "email": "mark@inkmasters.com",
         "password": "secretTattooer",
         "role": "tattooer"
+    }
+}
+```
+
+* SERVICES
+
+```JSON
+{
+    {
+        "service_name": "Custom tattoos",
+        "description": "The customers will have the freedom to select unique motifs and designs, completely customize your tattoo experience according to your preferences and tastes."
+    },
+    {
+        "service_name": "Catalogue tattoos",
+        "description": "We offer tattoos based on predefined designs in our catalogue. Customers can choose from a variety of stylish and proven options."
+    },
+    {
+        "service_name": "Restoration and rejuvenation",
+        "description": "We specialize in the restoration and rejuvenation of existing tattoos. Our experts work to improve and renew old tattoos, restoring their vitality."
+    },
+    {
+        "service_name": "Piercings and dilators",
+        "description": "We offer professional services for the placement of piercings and dilators. Our team ensures safe procedures and varied styles to satisfy individual preferences of our clients."
+    },
+    {
+        "service_name": "Piercings sellings and other articles",
+        "description": "In addition to our application services, we offer a selection of piercings and other items related to body art. Customers can purchase quality products for complement your unique style."
+    }
+}
+```
+
+* ESTABLISHMENTS
+
+```JSON
+{
+    {
+        "address": "Avenida del Cid, 12345",
+        "city": "Valencia",
+        "postal_code": 46018
+    },
+    {
+        "address": "Calle de las Alegrias y Amarguras, 123",
+        "city": "Cadiz",
+        "postal_code": 43128
     }
 }
 ```
@@ -200,6 +271,20 @@ Also, here you will get 4 different user data of each type of user that are crea
 ```js
 {
     "email": "user@user.com"
+}
+```
+
+* POST in /api/roles
+```js
+{
+    "role_name" : "cleaner"
+}
+```
+
+* PUT in /api/roles
+```js
+{
+    "name" : "tatooer"
 }
 ```
 

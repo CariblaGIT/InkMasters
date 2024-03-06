@@ -48,6 +48,12 @@ This API is a project focused on the correct implementation of the methods, stru
 <a href="https://www.mysql.com/">
     <img src= "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white"/>
 </a>
+<a href="https://expressjs.com/en/">
+    <img src= "https://img.shields.io/badge/Express%20js-000000?style=for-the-badge&logo=express&logoColor=white"/>
+</a>
+<a href="https://nodejs.org/en">
+    <img src= "https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/>
+</a>
 </div>
 
 ## 👨‍💻 Installation

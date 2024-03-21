@@ -119,7 +119,9 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
             })
         }
 
-        if(appointment.user.id !== req.tokenData.userId){
+        const isValidUser = appointment.user.id !== req.tokenData.userId
+
+        if(!isValidUser){
             return res.status(401).json({
                 success: false,
                 message: "Unauthorized to update that appointment"

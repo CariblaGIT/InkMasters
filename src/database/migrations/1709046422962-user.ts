@@ -20,14 +20,15 @@ export class User1709046422962 implements MigrationInterface {
                         default: 1
                     },
                     {
-                        name: "first_name",
+                        name: "fullname",
                         type: "varchar",
                         length: "255"
                     },
                     {
-                        name: "last_name",
+                        name: "username",
                         type: "varchar",
-                        length: "255"
+                        length: "255",
+                        isUnique: true
                     },
                     {
                         name: "email",

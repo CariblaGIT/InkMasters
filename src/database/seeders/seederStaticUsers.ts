@@ -9,8 +9,8 @@ export const staticUsersSeedDatabase = async () => {
 
         // User1 as super_admin user
         const userSuperAdmin = new User();
-        userSuperAdmin.firstName = "Dani"
-        userSuperAdmin.lastName = "Tarazona"
+        userSuperAdmin.fullname = "Dani Tarazona"
+        userSuperAdmin.username = "danitarazona"
         userSuperAdmin.email = "superadmin@superadmin.com"
         userSuperAdmin.passwordHash = bcrypt.hashSync("superAdmin", 8);
         userSuperAdmin.role = new Role();
@@ -19,8 +19,8 @@ export const staticUsersSeedDatabase = async () => {
 
         // User2 as admin user
         const userAdmin = new User();
-        userAdmin.firstName = "David"
-        userAdmin.lastName = "Ochando Blasco"
+        userAdmin.fullname = "David Ochando Blasco"
+        userAdmin.username = "davidochandoblasco"
         userAdmin.email = "admin@admin.com"
         userAdmin.passwordHash = bcrypt.hashSync("admin", 8);
         userAdmin.role = new Role();
@@ -29,8 +29,8 @@ export const staticUsersSeedDatabase = async () => {
 
         // User3 as normal user
         const user = new User();
-        user.firstName = "User"
-        user.lastName = "Normal"
+        user.fullname = "User Normal"
+        user.username = "usernormal"
         user.email = "user@user.com"
         user.passwordHash = bcrypt.hashSync("1234", 8);
         user.role = new Role();
@@ -39,8 +39,8 @@ export const staticUsersSeedDatabase = async () => {
 
         // User4 as tatooer user
         const tattooer = new User();
-        tattooer.firstName = "Mark"
-        tattooer.lastName = "Inker"
+        tattooer.fullname = "Mark Inker"
+        tattooer.username = "markinker"
         tattooer.email = "mark@inkmasters.com"
         tattooer.passwordHash = bcrypt.hashSync("secretTattooer", 8);
         tattooer.role = new Role();

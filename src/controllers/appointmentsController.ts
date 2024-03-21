@@ -31,7 +31,7 @@ export const PostAppointment = async (req : Request, res : Response) => {
         }
 
         const knowExistenceOfTattooer = await User.findOneBy({
-            email: reqTattooer
+            fullname: reqTattooer
         })
 
         if(!knowExistenceOfTattooer){
@@ -174,7 +174,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
         if(req.body.tattooer){
             const knowExistenceOfTattooer = await User.findOne({
                 where: {
-                    email: req.body.tattooer
+                    fullname: req.body.tattooer
                 }
             })
             if(knowExistenceOfTattooer){
@@ -234,8 +234,7 @@ export const GetAppointmentById = async (req : Request, res : Response) => {
                     address: true
                 },
                 tatooer:{
-                    firstName: true,
-                    lastName: true
+                    fullname: true
                 },
                 service:{
                     serviceName: true
@@ -298,8 +297,7 @@ export const GetAppointments = async (req : Request, res : Response) => {
                     serviceName: true
                 },
                 tatooer:{
-                    firstName: true,
-                    lastName: true
+                    fullname: true
                 },
                 appointmentDate: true
             }

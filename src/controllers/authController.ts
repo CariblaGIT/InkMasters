@@ -16,8 +16,8 @@ export const RegisterUser = async (req : Request, res : Response) => {
     try {
 
         const reqMail : string = req.body.email;
-        const reqFirstName : string = req.body.first_name;
-        const reqLastName : string = req.body.last_name;
+        let reqFullName : string = req.body.fullname;
+        const reqUserName : string = req.body.username;
         const reqPass : string = req.body.password_hash;
         const reqRole : string = req.body.role;
 
@@ -37,11 +37,15 @@ export const RegisterUser = async (req : Request, res : Response) => {
           )
         }
 
-        if(!reqFirstName || !reqLastName){
+        if(!reqUserName){
             return res.status(400).json({
                 success: false,
                 message: "No data provided correctly to create user"
             });
+        }
+
+        if(!reqFullName){
+            reqFullName = reqUserName
         }
 
         let newRole;
@@ -58,8 +62,8 @@ export const RegisterUser = async (req : Request, res : Response) => {
         const cryptedPass = bcrypt.hashSync(reqPass, 8);
 
         await User.create({
-            firstName: reqFirstName,
-            lastName: reqLastName,
+            fullname: reqFullName,
+            username: reqUserName,
             email: reqMail,
             passwordHash: cryptedPass,
         }).save()
@@ -145,7 +149,8 @@ export const LoginUser = async (req : Request, res : Response) => {
         const token = jwt.sign(
             {
                 userId: user.id,
-                roleName: user.role.name
+                roleName: user.role.name,
+                userName: user.username
             },
             process.env.JWT_SECRET as string
         );

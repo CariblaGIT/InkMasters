@@ -16,8 +16,8 @@ export const GetUsers = async (req : Request, res : Response) => {
         } else {
             const allUsers = await User.find({
                 select : {
-                    firstName : true,
-                    lastName : true,
+                    fullname : true,
+                    username : true,
                     email : true,
                     createdAt : true,
                     updatedAt : true
@@ -52,8 +52,8 @@ export const ProfileUser = async (req : Request, res : Response) => {
 
         const user = await User.findOne({
             select : {
-                firstName : true,
-                lastName : true,
+                fullname : true,
+                username : true,
                 email : true
             },
             where : {

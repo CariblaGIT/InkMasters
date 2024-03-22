@@ -18,6 +18,7 @@ export const GetUsers = async (req : Request, res : Response) => {
                 select : {
                     fullname : true,
                     username : true,
+                    avatar: true,
                     email : true,
                     createdAt : true,
                     updatedAt : true
@@ -54,6 +55,7 @@ export const ProfileUser = async (req : Request, res : Response) => {
             select : {
                 fullname : true,
                 username : true,
+                avatar: true,
                 email : true
             },
             where : {
@@ -92,6 +94,7 @@ export const ProfileUser = async (req : Request, res : Response) => {
 export const ModifyUser = async (req : Request, res : Response) => {
     try {
         const userId = req.tokenData.userId;
+        const avatar = req.file?.filename;
 
         const user = await User.findOneBy({
             id: userId
@@ -104,9 +107,15 @@ export const ModifyUser = async (req : Request, res : Response) => {
             })
         }
 
-        const userUpdate = await User.update(
+        let userUpdate = await User.update(
             {id: userId}, req.body
         )
+
+        if(avatar){
+            userUpdate = await User.update(
+                {id: userId}, {avatar: avatar}
+            )
+        }
 
         return res.status(200).json({
             success: true,

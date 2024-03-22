@@ -234,7 +234,8 @@ export const GetAppointmentById = async (req : Request, res : Response) => {
                     address: true
                 },
                 tatooer:{
-                    fullname: true
+                    fullname: true,
+                    avatar: true
                 },
                 service:{
                     serviceName: true
@@ -297,7 +298,8 @@ export const GetAppointments = async (req : Request, res : Response) => {
                     serviceName: true
                 },
                 tatooer:{
-                    fullname: true
+                    fullname: true,
+                    avatar: true
                 },
                 appointmentDate: true
             }

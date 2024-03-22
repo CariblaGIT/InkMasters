@@ -7,9 +7,27 @@ import { GetUsers, ProfileUser, ModifyUser, DeleteUser, ChangeUserRole} from "./
 import { GetServices, PostService, UpdateService, DeleteService } from "./controllers/servicesController";
 import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
 import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
+import multer from "multer";
+import path from "path";
 
 export const app : Application = express();
+
+// Create a storage strategy for multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        // Specify the upload directory
+        cb(null, '../img/uploads');
+    },
+    filename: function (req, file, cb) {
+        // Define the file name format
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+// Create a multer instance with the storage strategy
+const upload = multer({ storage: storage });
+
 app.use(express.json());
+app.use('/public', express.static(path.join(__dirname, "../img/uploads")));
 
 /* 
 ========================================
@@ -55,7 +73,7 @@ app.delete('/api/roles/:id', auth, isSuperAdmin, DeleteRol);
 
 app.get('/api/users', auth, isSuperAdmin, GetUsers);
 app.get('/api/users/profile', auth, ProfileUser);
-app.put('/api/users/profile', auth, ModifyUser);
+app.put('/api/users/profile', auth, upload.single('avatar'), ModifyUser);
 app.delete('/api/users/:id', auth, isSuperAdmin, DeleteUser);
 app.put('/api/users/:id/role', auth, isSuperAdmin, ChangeUserRole);
 

@@ -14,6 +14,9 @@ export class User extends BaseEntity{
     @Column({name: 'username'})
     username!: string
 
+    @Column({name: 'avatar'})
+    avatar!: string
+
     @Column({name: 'email'})
     email!: string
 

@@ -31,6 +31,12 @@ export class User1709046422962 implements MigrationInterface {
                         isUnique: true
                     },
                     {
+                        name: "avatar",
+                        type: "varchar",
+                        length: "255",
+                        default: "'default_avatar.png'"
+                    },
+                    {
                         name: "email",
                         type: "varchar",
                         length: "100",

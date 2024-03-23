@@ -9,6 +9,7 @@ import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments
 import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
 import multer from "multer";
 import path from "path";
+import cors from "cors";
 
 export const app : Application = express();
 
@@ -27,6 +28,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.use(express.json());
+app.use(cors());
 app.use('/public', express.static(path.join(__dirname, "../img/uploads")));
 
 /* 

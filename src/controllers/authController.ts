@@ -156,8 +156,8 @@ export const LoginUser = async (req : Request, res : Response) => {
             token: token
         })
         
-    } catch (error) {
-        if(error === "Email or password invalid"){
+    } catch (error : any) {
+        if(error.message === "Email or password invalid"){
             return res.status(401).json({
                 success: false,
                 message: "Login user failure",

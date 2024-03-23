@@ -18,7 +18,7 @@ export const RegisterUser = async (req : Request, res : Response) => {
         const reqMail : string = req.body.email;
         let reqFullName : string = req.body.fullname;
         const reqUserName : string = req.body.username;
-        const reqPass : string = req.body.password_hash;
+        const reqPass : string = req.body.password;
         const reqRole : string = req.body.role;
 
         if(!ValidatePassword(reqPass)){

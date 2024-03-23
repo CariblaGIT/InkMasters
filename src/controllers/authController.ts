@@ -120,6 +120,7 @@ export const LoginUser = async (req : Request, res : Response) => {
                 id: true,
                 passwordHash: true,
                 email: true,
+                avatar: true,
                 role: {
                     name: true
                 }
@@ -161,7 +162,7 @@ export const LoginUser = async (req : Request, res : Response) => {
             return res.status(401).json({
                 success: false,
                 message: "Login user failure",
-                error: error
+                error: error.message
             });
         }
         return res.status(500).json({

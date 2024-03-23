@@ -133,24 +133,19 @@ export const LoginUser = async (req : Request, res : Response) => {
         })
 
         if(!user){
-            return res.status(400).json({
-                success: false,
-                message: "Email or password invalid"
-            })
+            throw new Error ("Email or password invalid")
         }
 
         if(!bcrypt.compareSync(password, user.passwordHash)){
-            return res.status(400).json({
-                success: false,
-                message: "Email or password invalid"
-            })
+            throw new Error ("Email or password invalid")
         }
 
         const token = jwt.sign(
             {
                 userId: user.id,
                 roleName: user.role.name,
-                userName: user.username
+                userName: user.username,
+                avatar: user.avatar
             },
             process.env.JWT_SECRET as string
         );
@@ -162,6 +157,13 @@ export const LoginUser = async (req : Request, res : Response) => {
         })
         
     } catch (error) {
+        if(error === "Email or password invalid"){
+            return res.status(401).json({
+                success: false,
+                message: "Login user failure",
+                error: error
+            });
+        }
         return res.status(500).json({
             success: false,
             message: "Login user failure",

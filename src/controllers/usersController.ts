@@ -107,15 +107,15 @@ export const ModifyUser = async (req : Request, res : Response) => {
             })
         }
 
-        let userUpdate = await User.update(
-            {id: userId}, req.body
-        )
-
         if(avatar){
-            userUpdate = await User.update(
+            await User.update(
                 {id: userId}, {avatar: avatar}
             )
         }
+
+        const userUpdate = await User.update(
+            {id: userId}, req.body
+        )
 
         return res.status(200).json({
             success: true,

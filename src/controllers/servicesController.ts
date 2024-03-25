@@ -12,7 +12,7 @@ export const GetServices = async (req : Request, res : Response) => {
             select : {
                 serviceName : true,
                 description : true,
-                id : false
+                id : true
             }
         })
 

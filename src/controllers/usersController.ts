@@ -95,6 +95,7 @@ export const ModifyUser = async (req : Request, res : Response) => {
     try {
         const userId = req.tokenData.userId;
         const avatar = req.file?.filename;
+        const {fullname, username, email} = req.body;
 
         const user = await User.findOneBy({
             id: userId
@@ -108,19 +109,27 @@ export const ModifyUser = async (req : Request, res : Response) => {
         }
 
         if(avatar){
-            await User.update(
-                {id: userId}, {avatar: avatar}
-            )
+            user.avatar = avatar
         }
 
-        const userUpdate = await User.update(
-            {id: userId}, req.body
-        )
+        if(email){
+            user.email = email
+        }
+
+        if(fullname){
+            user.fullname = fullname
+        }
+
+        if(username){
+            user.username = username
+        }
+
+        const userUpdated = user.save();
 
         return res.status(200).json({
             success: true,
             message: "Users updated into DB successfully",
-            data: userUpdate
+            data: userUpdated
         })
 
     } catch (error) {

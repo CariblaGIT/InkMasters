@@ -26,7 +26,6 @@ const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(cors());
-app.use(upload.single('avatar'));
 app.use('/public', express.static(path.join(__dirname, "../img/uploads")));
 
 /* 
@@ -73,7 +72,7 @@ app.delete('/api/roles/:id', auth, isSuperAdmin, DeleteRol);
 
 app.get('/api/users', auth, isSuperAdmin, GetUsers);
 app.get('/api/users/profile', auth, ProfileUser);
-app.put('/api/users/profile', auth, ModifyUser);
+app.put('/api/users/profile', auth, upload.single('avatar'), ModifyUser);
 app.delete('/api/users/:id', auth, isSuperAdmin, DeleteUser);
 app.put('/api/users/:id/role', auth, isSuperAdmin, ChangeUserRole);
 

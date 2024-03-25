@@ -124,12 +124,12 @@ export const ModifyUser = async (req : Request, res : Response) => {
             user.username = username
         }
 
-        const userUpdated = user.save();
+        user.save();
 
         return res.status(200).json({
             success: true,
             message: "Users updated into DB successfully",
-            data: userUpdated
+            data: user
         })
 
     } catch (error) {

@@ -15,22 +15,22 @@ export const app : Application = express();
 
 const filePath = path.join(__dirname, "./public/uploads")
 //Create a storage strategy for multer
-const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./public/uploads");
-    },
-    filename: function (req, file, cb) {
-        // Define the file name format
-        cb(null, Date.now() + path.extname(file.originalname));
-    }
-});
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, "./public/uploads");
+//     },
+//     filename: function (req, file, cb) {
+//         // Define the file name format
+//         cb(null, Date.now() + path.extname(file.originalname));
+//     }
+// });
 // Create a multer instance with the storage strategy
-const upload = multer({ storage: storage });
-//const upload = multer({ dest: __dirname + "/public/uploads" });
+// const upload = multer({ storage: storage });
+const upload = multer({ dest: "../public/uploads" });
 
 app.use(express.json());
 app.use(cors());
-app.use('/public', express.static(filePath));
+app.use('/public', express.static(path.join(__dirname, "../public/uploads")));
 
 /* 
 ========================================

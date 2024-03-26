@@ -26,7 +26,7 @@ export const app : Application = express();
 // // Create a multer instance with the storage strategy
 // const upload = multer({ storage: storage });
 
-const upload = multer({ dest: './public/uploads/' });
+const upload = multer({ dest: '../public/uploads' });
 
 app.use(express.json());
 app.use(cors());

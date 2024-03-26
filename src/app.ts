@@ -27,10 +27,9 @@ const filePath = path.join(__dirname, "./public/uploads")
 // Create a multer instance with the storage strategy
 // const upload = multer({ storage: storage });
 const upload = multer({ dest: "./public/uploads" });
-
 app.use(express.json());
 app.use(cors());
-app.use('/public', express.static(path.join(__dirname, "./public/uploads")));
+app.use('/public', express.static(path.join(__dirname, "./public/uploads/")));
 
 /* 
 ========================================

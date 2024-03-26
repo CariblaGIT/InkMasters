@@ -9,26 +9,25 @@ import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments
 import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
 import multer from "multer";
 import cors from "cors";
+import path from "path";
 
 export const app : Application = express();
 
-// const filePath = path.join(__dirname, "./public/uploads")
-//Create a storage strategy for multer
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, "./public/uploads");
-//     },
-//     filename: function (req, file, cb) {
-//         // Define the file name format
-//         cb(null, Date.now() + path.extname(file.originalname));
-//     }
-// });
+// Create a storage strategy for multer
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "./public/uploads");
+    },
+    filename: function (req, file, cb) {
+        // Define the file name format
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
 // Create a multer instance with the storage strategy
-// const upload = multer({ storage: storage });
-const upload = multer({ dest: "./public/uploads" });
+const upload = multer({ storage: storage });
 app.use(express.json());
 app.use(cors());
-app.use('/public', express.static(__dirname + "/public/uploads/"));
+app.use('/public', express.static(path.join(__dirname, "../public/uploads")));
 
 /* 
 ========================================

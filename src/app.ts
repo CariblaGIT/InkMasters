@@ -16,7 +16,7 @@ export const app : Application = express();
 // Create a storage strategy for multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "./public/uploads");
+        cb(null, "./public/uploads/");
     },
     filename: function (req, file, cb) {
         // Define the file name format
@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 app.use(express.json());
 app.use(cors());
-app.use('/public', express.static(path.join(__dirname, "../public/uploads")));
+app.use('/public', express.static(path.join(__dirname, "../public/uploads/")));
 
 /* 
 ========================================

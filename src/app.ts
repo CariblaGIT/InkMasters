@@ -13,7 +13,7 @@ import cors from "cors";
 
 export const app : Application = express();
 
-//const filePath = path.join(__dirname, "./public/uploads")
+const filePath = path.join(__dirname, "./public/uploads")
 //Create a storage strategy for multer
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -30,7 +30,7 @@ const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(cors());
-app.use('/public', express.static("./public/uploads"));
+app.use('/public', express.static(filePath));
 
 /* 
 ========================================

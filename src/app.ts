@@ -25,12 +25,11 @@ export const app : Application = express();
 // });
 // // Create a multer instance with the storage strategy
 // const upload = multer({ storage: storage });
-const pathAbs = path.join(__dirname, "./public/data/uploads")
-const upload = multer({ dest: pathAbs });
+const upload = multer({ dest: __dirname + "/public/data/uploads" });
 
 app.use(express.json());
 app.use(cors());
-app.use('/public', express.static(pathAbs));
+app.use('/public', express.static(path.join(__dirname, "./public/data/uploads")));
 
 /* 
 ========================================

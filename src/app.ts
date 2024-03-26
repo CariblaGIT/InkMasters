@@ -8,12 +8,11 @@ import { GetServices, PostService, UpdateService, DeleteService } from "./contro
 import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
 import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
 import multer from "multer";
-import path from "path";
 import cors from "cors";
 
 export const app : Application = express();
 
-const filePath = path.join(__dirname, "./public/uploads")
+// const filePath = path.join(__dirname, "./public/uploads")
 //Create a storage strategy for multer
 // const storage = multer.diskStorage({
 //     destination: function (req, file, cb) {
@@ -29,7 +28,7 @@ const filePath = path.join(__dirname, "./public/uploads")
 const upload = multer({ dest: "./public/uploads" });
 app.use(express.json());
 app.use(cors());
-app.use('/public', express.static(path.join(__dirname, "./public/uploads/")));
+app.use('/public', express.static(__dirname + "/public/uploads/"));
 
 /* 
 ========================================

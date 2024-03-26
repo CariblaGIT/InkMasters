@@ -15,9 +15,7 @@ export const app : Application = express();
 
 // Create a storage strategy for multer
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, "./public/uploads/");
-    },
+    destination: "./public/uploads/",
     filename: function (req, file, cb) {
         // Define the file name format
         cb(null, Date.now() + path.extname(file.originalname));

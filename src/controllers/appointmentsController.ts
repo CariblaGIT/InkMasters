@@ -59,7 +59,7 @@ export const PostAppointment = async (req : Request, res : Response) => {
             });
         }
 
-        await Appointment.create({
+        const appointment = await Appointment.create({
             appointmentDate: reqDate,
             service: knowExistenceOfService,
             establishment: knowExistenceOfEstablishment,
@@ -69,7 +69,8 @@ export const PostAppointment = async (req : Request, res : Response) => {
 
         return res.status(201).json({
             success: true,
-            message: "Appointment registered into DB successfully"
+            message: "Appointment registered into DB successfully",
+            data: appointment
         })
         
     } catch (error) {

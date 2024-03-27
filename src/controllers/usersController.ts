@@ -298,7 +298,7 @@ export const GetTattooers = async (req : Request, res : Response) => {
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message: "Get users from DB failure",
+            message: "Get tattoers from DB failure",
             error: error
         });
     }

@@ -9,7 +9,6 @@
     "seeder": "ts-node ./src/database/seed.ts",
     "build": "tsc",
     "start": "node ./dist/server.js",
-    "postinstall": "chmod +x setup/setup.sh && ./setup/setup.sh",
     "run-migrations": "typeorm-ts-node-commonjs migration:run -d ./src/database/db.ts",
     "revert-migrations": "typeorm-ts-node-commonjs migration:revert -d ./src/database/db.ts"
   },

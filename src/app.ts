@@ -21,6 +21,7 @@ const storage = multer.diskStorage({
         cb(null, Date.now() + path.extname(file.originalname));
     }
 });
+
 // Create a multer instance with the storage strategy
 const upload = multer({ storage: storage });
 app.use(express.json());

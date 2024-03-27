@@ -264,3 +264,42 @@ export const ChangeUserRole = async (req : Request, res : Response) => {
         });
     }
 }
+
+// ========================================================================================================================================
+//  FUNCTION        | ENDPOINT             | FUNCTIONALITY
+//                  | GET                  | This function gets all the tatooers from the database
+//  GetTattooers()  | /api/users/tatooers  | To make this petition, the user has to be a super_admin user
+// ========================================================================================================================================
+export const GetTattooers = async (req : Request, res : Response) => {
+    try {
+        const allTatooers = await User.find({
+            select : {
+                fullname : true,
+                username : true,
+                avatar: true,
+                email : true
+            },
+            relations:{
+                role : true
+            },
+            where : {
+                role : {
+                    name : "tattooer"
+                }
+            }
+        })
+    
+        return res.status(200).json({
+            success: true,
+            message: "Tattooers retrieved from DB successfully",
+            data: allTatooers
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Get users from DB failure",
+            error: error
+        });
+    }
+}

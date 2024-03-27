@@ -3,7 +3,7 @@ import { auth } from "./middlewares/auth";
 import { isSuperAdmin } from "./middlewares/isSuperAdmin";
 import { RegisterUser, LoginUser } from "./controllers/authController";
 import { DeleteRol, GetRoles, PostRol, UpdateRol } from "./controllers/rolsController";
-import { GetUsers, ProfileUser, ModifyUser, DeleteUser, ChangeUserRole} from "./controllers/usersController";
+import { GetUsers, ProfileUser, ModifyUser, DeleteUser, ChangeUserRole, GetTattooers} from "./controllers/usersController";
 import { GetServices, PostService, UpdateService, DeleteService } from "./controllers/servicesController";
 import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
 import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
@@ -71,6 +71,7 @@ app.delete('/api/roles/:id', auth, isSuperAdmin, DeleteRol);
 */
 
 app.get('/api/users', auth, isSuperAdmin, GetUsers);
+app.get('/api/users/tattooers', auth, GetTattooers);
 app.get('/api/users/profile', auth, ProfileUser);
 app.put('/api/users/profile', auth, upload.single('avatar'), ModifyUser);
 app.delete('/api/users/:id', auth, isSuperAdmin, DeleteUser);

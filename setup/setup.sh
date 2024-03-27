@@ -1,1 +1,1 @@
-chmod -R 755 ../../public/uploads
+chmod -R 755 /public/uploads

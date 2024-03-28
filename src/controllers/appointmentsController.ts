@@ -302,7 +302,8 @@ export const GetAppointments = async (req : Request, res : Response) => {
                     fullname: true,
                     avatar: true
                 },
-                appointmentDate: true
+                appointmentDate: true,
+                id: true
             },
             order:{
                 appointmentDate : "ASC"

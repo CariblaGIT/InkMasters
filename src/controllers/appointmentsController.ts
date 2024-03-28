@@ -90,7 +90,6 @@ export const PostAppointment = async (req : Request, res : Response) => {
 export const UpdateAppointment = async (req : Request, res : Response) => {
     try {
         const appointmentId = req.body.id;
-        let checkBodyParams : any = [];
 
         if(!parseInt(appointmentId)){
             return res.status(400).json({
@@ -104,11 +103,24 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
                 id: appointmentId
             },
             relations:{
-                user: true
+                user: true,
+                service: true,
+                establishment: true,
+                tattooer: true
             },
             select:{
                 user:{
                     id: true
+                },
+                establishment:{
+                    address: true
+                },
+                tattooer:{
+                    fullname: true,
+                    avatar: true
+                },
+                service:{
+                    serviceName: true
                 }
             }
         })
@@ -120,9 +132,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
             })
         }
 
-        const isValidUser = (appointment.user.id !== req.tokenData.userId)
-
-        if(!isValidUser){
+        if(appointment.user.id !== req.tokenData.userId){
             return res.status(401).json({
                 success: false,
                 message: "Unauthorized to update that appointment"
@@ -131,7 +141,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
 
         if(req.body.appointmentDate){
             if(ValidateDate(req.body.appointmentDate)){
-                checkBodyParams.push({appointmentDate: req.body.appointmentDate})
+                appointment.appointmentDate = req.body.appointmentDate
             } else {
                 return res.status(400).json({
                     success: false,
@@ -147,7 +157,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
                 }
             })
             if(knowExistenceOfService){
-                checkBodyParams.push({service: knowExistenceOfService})
+                appointment.service = knowExistenceOfService
             } else {
                 return res.status(400).json({
                     success: false,
@@ -163,7 +173,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
                 }
             })
             if(knowExistenceOfEstablishment){
-                checkBodyParams.push({establishment: knowExistenceOfEstablishment})
+                appointment.establishment = knowExistenceOfEstablishment
             } else {
                 return res.status(400).json({
                     success: false,
@@ -179,7 +189,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
                 }
             })
             if(knowExistenceOfTattooer){
-                checkBodyParams.push({tattooer: knowExistenceOfTattooer})
+                appointment.tattooer = knowExistenceOfTattooer
             } else {
                 return res.status(400).json({
                     success: false,
@@ -188,22 +198,19 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
             }
         }
 
-        for(let i = 0; i < checkBodyParams.length; i++){
-            await Appointment.update(
-                {id: appointmentId}, checkBodyParams[i]
-            )
-        }
+        appointment.save()
 
         return res.status(200).json({
             success: true,
-            message: "Appointment updated into DB successfully"
+            message: "Appointment updated into DB successfully",
+            data: appointment
         })
 
-    } catch (error) {
+    } catch (error : any) {
         return res.status(500).json({
             success: false,
             message: "Update appointment into DB failure",
-            error: error
+            error: error.message
         });
     }
 }

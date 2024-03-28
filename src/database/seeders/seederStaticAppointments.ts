@@ -11,8 +11,8 @@ export const staticAppointmentsSeedDatabase = async () => {
         //Establishment1
         const appointment1 = new Appointment();
         appointment1.appointmentDate = new Date("2023-03-19");
-        appointment1.tatooer = new User();
-        appointment1.tatooer.id = 4;
+        appointment1.tattooer = new User();
+        appointment1.tattooer.id = 4;
         appointment1.user = new User();
         appointment1.user.id = 3;
         appointment1.establishment = new Establishment();
@@ -24,8 +24,8 @@ export const staticAppointmentsSeedDatabase = async () => {
         //Establishment2
         const appointment2 = new Appointment();
         appointment2.appointmentDate = new Date("2023-03-24");
-        appointment2.tatooer = new User();
-        appointment2.tatooer.id = 4;
+        appointment2.tattooer = new User();
+        appointment2.tattooer.id = 4;
         appointment2.user = new User();
         appointment2.user.id = 1;
         appointment2.establishment = new Establishment();

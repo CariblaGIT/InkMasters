@@ -27,7 +27,7 @@ export const generateFakeAppointments = async () => {
         }
     });
     const tattooer = listSTattooers[Math.floor(Math.random() * listSTattooers.length)];
-    appointment.tatooer = tattooer;
+    appointment.tattooer = tattooer;
 
     appointment.appointmentDate = faker.date.anytime();
 

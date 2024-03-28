@@ -120,7 +120,7 @@ export const UpdateAppointment = async (req : Request, res : Response) => {
             })
         }
 
-        const isValidUser = appointment.user.id !== req.tokenData.userId
+        const isValidUser = (appointment.user.id !== req.tokenData.userId)
 
         if(!isValidUser){
             return res.status(401).json({

@@ -63,7 +63,7 @@ export const PostAppointment = async (req : Request, res : Response) => {
             appointmentDate: reqDate,
             service: knowExistenceOfService,
             establishment: knowExistenceOfEstablishment,
-            tatooer: knowExistenceOfTattooer,
+            tattooer: knowExistenceOfTattooer,
             user: {id: reqUserId}
         }).save()
 
@@ -224,7 +224,7 @@ export const GetAppointmentById = async (req : Request, res : Response) => {
             relations:{
                 user: true,
                 establishment: true,
-                tatooer: true,
+                tattooer: true,
                 service: true
             },
             select:{
@@ -234,7 +234,7 @@ export const GetAppointmentById = async (req : Request, res : Response) => {
                 establishment:{
                     address: true
                 },
-                tatooer:{
+                tattooer:{
                     fullname: true,
                     avatar: true
                 },
@@ -288,7 +288,7 @@ export const GetAppointments = async (req : Request, res : Response) => {
             },
             relations:{
                 establishment: true,
-                tatooer: true,
+                tattooer: true,
                 service: true
             },
             select:{
@@ -298,7 +298,7 @@ export const GetAppointments = async (req : Request, res : Response) => {
                 service:{
                     serviceName: true
                 },
-                tatooer:{
+                tattooer:{
                     fullname: true,
                     avatar: true
                 },

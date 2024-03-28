@@ -5,7 +5,7 @@ import { RegisterUser, LoginUser } from "./controllers/authController";
 import { DeleteRol, GetRoles, PostRol, UpdateRol } from "./controllers/rolsController";
 import { GetUsers, ProfileUser, ModifyUser, DeleteUser, ChangeUserRole, GetTattooers} from "./controllers/usersController";
 import { GetServices, PostService, UpdateService, DeleteService } from "./controllers/servicesController";
-import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments } from "./controllers/appointmentsController";
+import { PostAppointment, UpdateAppointment, GetAppointmentById, GetAppointments, DeleteAppointmentById } from "./controllers/appointmentsController";
 import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstablishment } from "./controllers/establishmentsController";
 import multer from "multer";
 import cors from "cors";
@@ -88,6 +88,7 @@ app.post('/api/appointments', auth, PostAppointment);
 app.put('/api/appointments/', auth, UpdateAppointment);
 app.get('/api/appointments/:id', auth, GetAppointmentById);
 app.get('/api/appointments', auth, GetAppointments);
+app.delete('/api/appointments/:id', auth, DeleteAppointmentById);
 
 
 /* 

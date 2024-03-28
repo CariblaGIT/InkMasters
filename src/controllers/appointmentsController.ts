@@ -330,3 +330,45 @@ export const GetAppointments = async (req : Request, res : Response) => {
         });
     }
 }
+
+// ========================================================================================================================================
+//  FUNCTION           | ENDPOINT           | FUNCTIONALITY
+//                     | GET                | This function gets all appointments by ID given from the token inside the petition
+//  GetAppointments()  | /api/appointments/ | For doing this petition, you have to be logged in as an user from the app
+// ========================================================================================================================================
+export const DeleteAppointmentById = async (req : Request, res : Response) => {
+    try {
+        const appointmentId = parseInt(req.params.id);
+        const userId = req.tokenData.userId;
+
+        const appointment = await Appointment.findOne({
+            where: {
+                user: {id: userId},
+                id: appointmentId
+            },
+        })
+
+        if(!appointment){
+            return res.status(404).json({
+                success: false,
+                message: "Appointment not found to delete on DB"
+            })
+        }
+
+        await Appointment.delete(
+            {id: appointmentId}
+        )
+
+        return res.status(200).json({
+            success: true,
+            message: "Appointment deleted from DB successfully"
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Delete appointments from DB failure",
+            error: error
+        });
+    }
+}

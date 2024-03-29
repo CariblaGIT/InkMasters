@@ -61,12 +61,12 @@ export const RegisterUser = async (req : Request, res : Response) => {
 
         const cryptedPass = bcrypt.hashSync(reqPass, 8);
 
-        const user = await User.create({
+        const user = User.create({
             fullname: reqFullName,
             username: reqUserName,
             email: reqMail,
             passwordHash: cryptedPass,
-        }).save()
+        })
 
         if(reqRole){
             const roleToUser = await Role.findOneBy({name: reqRole})
@@ -75,7 +75,7 @@ export const RegisterUser = async (req : Request, res : Response) => {
             }
         }
 
-        user.save()
+        await user.save()
 
         return res.status(201).json({
             success: true,

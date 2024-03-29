@@ -20,8 +20,12 @@ export const GetUsers = async (req : Request, res : Response) => {
                     username : true,
                     avatar: true,
                     email : true,
-                    createdAt : true,
-                    updatedAt : true
+                    role : {
+                        name : true
+                    }
+                },
+                relations : {
+                    role: true
                 }
             })
     

@@ -61,7 +61,7 @@ export const RegisterUser = async (req : Request, res : Response) => {
 
         const cryptedPass = bcrypt.hashSync(reqPass, 8);
 
-        await User.create({
+        const user = await User.create({
             fullname: reqFullName,
             username: reqUserName,
             email: reqMail,
@@ -69,14 +69,18 @@ export const RegisterUser = async (req : Request, res : Response) => {
         }).save()
 
         if(reqRole){
-            await User.update(
-                {email: reqMail}, {role: newRole}
-            )
+            const roleToUser = await Role.findOneBy({name: reqRole})
+            if(roleToUser){
+                user.role = roleToUser
+            }
         }
+
+        user.save()
 
         return res.status(201).json({
             success: true,
-            message: "User registered into DB successfully"
+            message: "User registered into DB successfully",
+            data: user
         })
         
     } catch (error : any) {

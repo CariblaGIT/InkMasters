@@ -76,7 +76,7 @@ export const RegisterUser = async (req : Request, res : Response) => {
         }
 
         await user.save()
-
+        
         return res.status(201).json({
             success: true,
             message: "User registered into DB successfully",

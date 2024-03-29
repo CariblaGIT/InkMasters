@@ -22,7 +22,8 @@ export const GetUsers = async (req : Request, res : Response) => {
                     email : true,
                     role : {
                         name : true
-                    }
+                    },
+                    id: true
                 },
                 relations : {
                     role: true

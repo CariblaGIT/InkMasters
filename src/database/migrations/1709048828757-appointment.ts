@@ -32,7 +32,7 @@ export class Appointment1709048828757 implements MigrationInterface {
                     },
                     {
                         name: "appointment_date",
-                        type: "date",
+                        type: "datetime",
                         isNullable: false
                     }
                 ],

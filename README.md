@@ -6,14 +6,14 @@
 <h4 align="center">API for tattoo shop bussiness</h4>
 
 <p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#project-objective">Project objective</a> •
-  <a href="#stack">Stack</a> •
-  <a href="#installation">Installation</a> •
-  <a href="#api">API</a> •
-  <a href="#future-improvements">Future improvements</a> •
-  <a href="#support">Support</a> •
-  <a href="#you-may-also-like">You may also like...</a>
+  <a href="#-key-features">Key Features</a> •
+  <a href="#-project-objective">Project objective</a> •
+  <a href="#️-stack">Stack</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-api">API</a> •
+  <a href="#️-future-improvements">Future improvements</a> •
+  <a href="#-support">Support</a> •
+  <a href="#-you-may-also-like">You may also like...</a>
 </p>
 
 ## 🔑 Key Features
@@ -58,7 +58,7 @@ This API is a project focused on the correct implementation of the methods, stru
 
 ## 👨‍💻 Installation
 
-Follow the steps to emulate the project in your local device. But is not necessary because the project has been uploaded to FL0, so you can skip the installation and use the following URL to make all the consults in front of your localhost one: https://inkmasters-dev-mqbj.2.us-1.fl0.io
+Follow the steps to emulate the project in your local device. But is not necessary because the project has been uploaded to Railway (previously on FL0), so you can skip the installation and use the following URL to make all the consults in front of your localhost one: [🚀 Deploy 🚀](https://inkmasters-production-9f96.up.railway.app/healthy)
 
 1. Clone repo
 2. Install dependencies:
@@ -199,6 +199,12 @@ Also, here you will get the data from 4 users, all roles, 2 establishments and a
 }
 ```
 
+#### Avatars
+
+| METHOD     | URL                      | Description                                                                 |
+| ---------- | ------------------------ | --------------------------------------------------------------------------- |
+| `URL`      |`/public/{img-name}`      | Method to get the images uploaded from users to update their avatars        |
+
 #### Auth table
 
 | METHOD     | URL                      | Description                                                                 |
@@ -251,6 +257,7 @@ Also, here you will get the data from 4 users, all roles, 2 establishments and a
 | `GET`      |`/api/appointments/{id}`  | Get an appointments from DB                                                 |
 | `POST`     |`/api/appointments`       | Post an appointment into DB                                                 |
 | `UPDATE`   |`/api/appointments`       | Update an appointment into DB                                               |
+| `DELETE`   |`/api/appointments/{id}`  | Delete an appointment by ID from the DB (only owner)                        |
 
 ### Body to give and in which method is required to use it
 
@@ -348,7 +355,7 @@ Also, here you will get the data from 4 users, all roles, 2 establishments and a
 * POST in api/appointments
 ```js
 {
-    "appointment_date": "2030-10-30",
+    "appointment_date": "2030-10-30 14:23",
     "service_name": "Catalogue tattoos",
     "establishment": "Extramuros Marta, 46 Esc. 986",
     "tattooer": "mark@inkmasters.com"
@@ -361,26 +368,20 @@ Also, here you will get the data from 4 users, all roles, 2 establishments and a
     "establishment": "Plaza Teresa Rodarte, 72 Puerta 109",
     "tatooer": "mark@inkmasters.com",
     "service": "Restoration and rejuvenation",
-    "appointmentDate": "3333-04-05",
+    "appointmentDate": "3333-04-05 13:54",
     "id": 1
 }
 ```
 
 ## 🛠️ Future improvements
 
-⬜ Implementing front-end to use the API
+✅ Implementing front-end to use the API
 <br>
-⬜ Implementing Tattoes / Piercings / Dilators entities and his reference into DB
+✅ Implementing avatars for each user using Multer library
 <br>
 ⬜ Making some restrictions for each role (concretely, the tattoer to get his appointments)
 <br>
 ⬜ Splitting the different validations inside functions
-
-## 💪 Support
-
-<div align="center">
-<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/purple_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important; box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
-</div>
 
 ## 👀 You may also like...
 

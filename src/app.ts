@@ -10,6 +10,7 @@ import { DeleteEstablishment, GetEstablishments, PostEstablishment, UpdateEstabl
 import multer from "multer";
 import cors from "cors";
 import path from "path";
+import { isAdmin } from "./middlewares/isAdmin";
 
 export const app : Application = express();
 
@@ -58,7 +59,7 @@ app.post('/api/auth/login', LoginUser);
 ========================================
 */
 
-app.get('/api/roles', auth, isSuperAdmin, GetRoles);
+app.get('/api/roles', auth, isAdmin, GetRoles);
 app.post('/api/roles', auth, isSuperAdmin, PostRol);
 app.put('/api/roles/:id', auth, isSuperAdmin, UpdateRol);
 app.delete('/api/roles/:id', auth, isSuperAdmin, DeleteRol);
@@ -70,7 +71,7 @@ app.delete('/api/roles/:id', auth, isSuperAdmin, DeleteRol);
 ========================================
 */
 
-app.get('/api/users', auth, isSuperAdmin, GetUsers);
+app.get('/api/users', auth, isAdmin, GetUsers);
 app.get('/api/users/tattooers', auth, GetTattooers);
 app.get('/api/users/profile', auth, ProfileUser);
 app.put('/api/users/profile', auth, upload.single('avatar'), ModifyUser);
